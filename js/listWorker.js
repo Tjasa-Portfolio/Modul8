@@ -46,7 +46,7 @@ createApp({
             .catch((error) => console.error(error));
         },
         
-        selectTaskType(w){
+        selectWorker(w){
             this.worker.id = w.id;
             this.worker.name = w.name;
             this.worker.surname = w.surname;
