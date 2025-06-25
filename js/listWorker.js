@@ -45,7 +45,7 @@ createApp({
 
     updateWorker() {
       axios
-        .post("http://localhost:8080/worker/updateWorker", this.worker)
+        .put("http://localhost:8080/worker/updateWorker", this.worker)
         .then((response) => {
           this.loadAllWorkers();
           this.worker.id = "";
@@ -53,7 +53,6 @@ createApp({
           this.worker.surname = "";
           this.worker.birthday = "";
           this.worker.emso = "";
-          this.openAddFormBoolean = !this.openAddFormBoolean;
         })
         .catch((error) => console.error(error));
     },
