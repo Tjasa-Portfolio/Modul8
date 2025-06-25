@@ -1,154 +1,347 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tasks</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="js/listTask.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tasks</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script type="module" src="js/listTask.js"></script>
-</head>
+  <body class="d-flex flex-column min-vh-100">
+    <!--NAVIGACIJA-->
+    <div class="container">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Naloge</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="listWorker.html"
+                  >Seznam Delavcev</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="listTask.html"
+                  >Seznam Nalog</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  aria-current="page"
+                  href="listDepartment.html"
+                  >Seznam Oddelkov</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="listTaskType.html"
+                  >Seznam Tipov nalog</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="listTitle.html"
+                  >Seznam Nazivov</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
 
-<body>
- <h1>tasks</h1>
+    <div class="container flex-grow-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-12" id="app">
+            <!-- NOVA NALOGA-->
+            <div class="col-12 py-4" id="app">
+              <div class="row">
+                <div class="col-10">
+                  <h2>Dodaj novo nalogo</h2>
+                </div>
+                <div class="col-2">
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    @click="openAddForm()"
+                  >
+                    <span class="material-symbols-outlined"> add </span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-12" id="app" v-if="this.openAddFormBoolean">
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label">Id naloge</label>
+                    <input
+                      v-model="task.id"
+                      type="text"
+                      class="form-control"
+                      id="id"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Ime naloge</label>
+                    <input
+                      v-model="task.name"
+                      type="text"
+                      class="form-control"
+                      id="name"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Opis naloge</label>
+                    <input
+                      v-model="task.description"
+                      type="text"
+                      class="form-control"
+                      id="description"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Začetek</label>
+                    <input
+                      v-model="task.startDate"
+                      type="text"
+                      class="form-control"
+                      id="starttDate"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Konec</label>
+                    <input
+                      v-model="task.endDate"
+                      type="text"
+                      class="form-control"
+                      id="endDate"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <input
+                      v-model="task.status"
+                      type="text"
+                      class="form-control"
+                      id="status"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Nujnost</label>
+                    <input
+                      v-model="task.priority"
+                      type="text"
+                      class="form-control"
+                      id="priority"
+                    />
+                  </div>
+                </form>
+                <button
+                  @click="sendTask()"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Potrdi
+                </button>
+              </div>
+            </div>
+            <!-- TABELA Nalog -->
+            <h2>Seznam Nalog</h2>
+            <table class="table table-striped py-4">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Naslov</th>
+                  <th scope="col">Opis</th>
+                  <th scope="col">Začetek</th>
+                  <th scope="col">Konec</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Nujnost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="task in tasks" @click="selectTask(task)">
+                  <th scope="row">{{task.id}}</th>
+                  <td>{{task.name}}</td>
+                  <td>{{task.description}}</td>
+                  <td>{{task.startDate}}</td>
+                  <td>{{task.endDate}}</td>
+                  <td>{{task.status}}</td>
+                  <td>{{task.priority}}</td>
+                  <td>
+                    <button
+                      @click="deleteTask(task.id)"
+                      type="button"
+                      class="btn btn-danger"
+                    >
+                      Izbriši
+                    </button>
+                    <button
+                      style="margin-left: 10px"
+                      @click="deleteTask(task.id)"
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      Spremeni
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-  <!--<div class="container">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Delavci</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="listTask.html">Seznam Nalog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="listDepartment.html">Seznam Oddelkov</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="listTaskType.html">Seznam Tipov nalog</a>
-            </li>
-<li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="listTitle.html">Seznam Nazivov</a>
-            </li>
-        <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="listWorker.html">Seznam Delavcev</a>
-            </li>
-          </ul>
+            <!-- UPDATE naloge MODAL -->
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Sprememba Naloge
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <label class="form-label">Id naloge</label>
+                        <input
+                          v-model="task.id"
+                          type="text"
+                          class="form-control"
+                          id="id"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Ime naloge</label>
+                        <input
+                          v-model="task.name"
+                          type="text"
+                          class="form-control"
+                          id="name"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Opis naloge</label>
+                        <input
+                          v-model="task.description"
+                          type="text"
+                          class="form-control"
+                          id="description"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Začetek</label>
+                        <input
+                          v-model="task.startDate"
+                          type="text"
+                          class="form-control"
+                          id="starttDate"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Konec</label>
+                        <input
+                          v-model="task.endDate"
+                          type="text"
+                          class="form-control"
+                          id="endDate"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <input
+                          v-model="task.status"
+                          type="text"
+                          class="form-control"
+                          id="status"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Nujnost</label>
+                        <input
+                          v-model="task.priority"
+                          type="text"
+                          class="form-control"
+                          id="priority"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Zapri
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      @click="updateTask()"
+                      data-bs-dismiss="modal"
+                    >
+                      Shrani
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
-  </div>-->
-
-  <div class="container">
-    <div class="row">
-      <div class="col-3">
-        <ul>
-          <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="listTask.html">Seznam Nalog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="listDepartment.html">Seznam Oddelkov</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="listTaskType.html">Seznam Tipov nalog</a>
-            </li>
-<li class="nav-item">
-              <a class="nav-link" aria-current="page" href="listTitle.html">Seznam Nazivov</a>
-            </li>
-        <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="listWorker.html">Seznam Delavcev</a>
-            </li>
-        
-        </ul>
-      </div>
-      <!--<div class="col-9" id="app">
-        <h2>Seznam sej:</h2>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Ime</th>
-              <th scope="col">Priimek</th>
-              <th scope="col">Rojstni datum</th>
-              <th scope="col">EMŠO</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="worker in workers" @click="selectWorker(worker)">
-              <th scope="row">{{worker.id}}</th>
-              <td>{{worker.name}}</td>
-              <td>{{worker.surname}}</td>
-              <td>{{worker.birthday}}</td>
-              <td>{{worker.EMSO}}</td>
-              <td><button @click="deleteWorker(worker.id)" type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-          </tbody>
-          
-        </table>
-
-        <div class="col-9" id="app">
-        
-        <h3>Sprememba delavca</h3>
-        
-        <form>
-          <div class="mb-3">
-            <label  class="form-label">Id delavca</label>
-            <input disabled="true" v-model="worker.id" type="text" class="form-control" id="id">
-          </div>
-          <div class="mb-3">
-            <label  class="form-label">Ime delavca</label>
-            <input disabled="true" v-model="worker.name" type="text" class="form-control" id="name">
-          </div>
-          <div class="mb-3">
-            <label  class="form-label">Priimek delavca</label>
-            <input disabled="true" v-model="worker.surname" type="text" class="form-control" id="startHour" >
-          </div>
-          <div class="mb-3">
-            <label  class="form-label">Rojstni dan delavca</label>
-            <input disabled="true" v-model="worker.birthday" type="text" class="form-control" id="endHour" >
-          </div>
-          <div class="mb-3">
-            <label  class="form-label">EMŠO delavca</label>
-            <input disabled="true" v-model="worker.EMSO" type="text" class="form-control" id="endHour" >
-          </div>
-          <div class="mb-3">
-            <label for="mySelect" class="form-label">Dogodki:</label>
-            <select v-model="session.event.id" id="mySelect" class="form-select">
-              <option v-for="event in events" :value="event.id">
-                {{event.name}}
-              </option>
-            </select>
-          </div>
-          <div class="mb-3 form-check">
-            <input v-model="selectedCheckbox" type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Strinjam se z pogoji uporabe</label>
-          </div>
-        </form>
-        <button @click="sendWorker()" :disabled="!selectedCheckbox" type="submit" class="btn btn-primary">Potrdi</button> 
-      </div>  
-      </div>  -->         
     </div>
-    
-  </div>
 
-  <div class="container">
-    <footer style="background-color: #deded5;">
-      
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2025 Copyright:
-        <a class="text-dark" >Tjaša Žilavec za PRSPR</a>
-      </div>
-      <!-- Copyright -->
-    </footer>
-  </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-crossorigin="anonymous"></script>
-</body>
+    <div class="container">
+      <footer class="mt-auto bg-light">
+        <div
+          class="container-fluid text-center p-3"
+          style="background-color: rgba(0, 0, 0, 0.2)"
+        >
+          © 2025 Copyright:
+          <span class="text-dark">Tjaša Žilavec za PRSPR</span>
+        </div>
+      </footer>
+    </div>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
