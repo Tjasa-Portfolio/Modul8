@@ -38,7 +38,7 @@ createApp({
           this.worker.surname = "";
           this.worker.birthday = "";
           this.worker.emso = "";
-          this.openAddFormBoolean = !this.openAddFormBoolean;
+          this.openAddForm();
         })
         .catch((error) => console.error(error));
     },
@@ -62,6 +62,11 @@ createApp({
         .delete("http://localhost:8080/worker/deleteWorker/" + id)
         .then((response) => {
           this.loadAllWorkers();
+          this.worker.id = "";
+          this.worker.name = "";
+          this.worker.surname = "";
+          this.worker.birthday = "";
+          this.worker.emso = "";
         })
         .catch((error) => console.error(error));
     },
