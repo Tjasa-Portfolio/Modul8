@@ -230,8 +230,64 @@
                   <td>
                     {{task.worker?.name || ''}} {{task.worker?.surname || ''}}
                   </td>
-                  <td>{{task.status}}</td>
-                  <td>{{task.priority}}</td>
+                  <td>
+                    <img
+                      v-if="task.status=='finished'"
+                      src="./img/status/check.png"
+                      alt="finished"
+                      style="width: 28px"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Finished"
+                    />
+                    <img
+                      v-if="task.status=='waiting'"
+                      src="./img/status/stop-button.png"
+                      alt="waiting"
+                      style="width: 28px"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Waiting"
+                    />
+                    <img
+                      v-if="task.status=='in progress'"
+                      src="./img/status/work-in-progress.png"
+                      alt="in progress"
+                      style="width: 28px"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="In Progress"
+                    />
+                  </td>
+                  <td>
+                    <img
+                      v-if="task.priority=='medium'"
+                      src="./img/nujnost/medium.png"
+                      alt="finished"
+                      style="width: 28px"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Medium"
+                    />
+                    <img
+                      v-if="task.priority=='low'"
+                      src="./img/nujnost/low.png"
+                      alt="waiting"
+                      style="width: 28px"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="low"
+                    />
+                    <img
+                      v-if="task.priority=='high'"
+                      src="./img/nujnost/high.png"
+                      alt="in progress"
+                      style="width: 28px"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="High"
+                    />
+                  </td>
                   <td>{{task.taskType?.name || ''}}</td>
 
                   <td>
