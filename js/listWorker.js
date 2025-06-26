@@ -4,18 +4,24 @@ createApp({
   data() {
     return {
       workers: [],
+      departments: [],
+      titles: [],
       worker: {
         id: "",
         name: "",
         surname: "",
         birthday: "",
         emso: "",
+        department: { id: "", name: "" },
+        title: { id: "", name: "" },
       },
       openAddFormBoolean: false,
     };
   },
   created() {
     this.loadAllWorkers();
+    this.loadAllDepartments();
+    this.loadAllTitles();
   },
   methods: {
     loadAllWorkers() {
@@ -23,11 +29,27 @@ createApp({
         .get("http://localhost:8080/worker/getAllWorkers")
         .then((response) => {
           this.workers = response.data;
+
           console.log("response", response);
         })
         .catch((error) => console.error(error));
     },
-
+    loadAllDepartments() {
+      axios
+        .get("http://localhost:8080/department/getAllDepartments")
+        .then((response) => {
+          this.departments = response.data;
+        })
+        .catch((error) => console.error(error));
+    },
+    loadAllTitles() {
+      axios
+        .get("http://localhost:8080/title/getAllTitles")
+        .then((response) => {
+          this.titles = response.data;
+        })
+        .catch((error) => console.error(error));
+    },
     sendWorker() {
       axios
         .post("http://localhost:8080/worker/addWorker", this.worker)
@@ -38,6 +60,8 @@ createApp({
           this.worker.surname = "";
           this.worker.birthday = "";
           this.worker.emso = "";
+          this.worker.department.id = "";
+          this.worker.title.id = "";
           this.openAddForm();
         })
         .catch((error) => console.error(error));
@@ -53,6 +77,8 @@ createApp({
           this.worker.surname = "";
           this.worker.birthday = "";
           this.worker.emso = "";
+          this.worker.department.id = "";
+          this.worker.title.id = "";
         })
         .catch((error) => console.error(error));
     },
@@ -77,6 +103,8 @@ createApp({
       this.worker.surname = w.surname;
       this.worker.birthday = w.birthday;
       this.worker.emso = w.emso;
+      this.worker.department.id = w.department.id;
+      this.worker.title.id = w.title.id;
     },
 
     openAddForm() {

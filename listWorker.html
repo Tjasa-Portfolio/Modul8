@@ -35,10 +35,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  aria-current="page"
-                  href="index.html"
+                <a class="nav-link" aria-current="page" href="index.html"
                   >Domov</a
                 >
               </li>
@@ -85,66 +82,86 @@
           <div class="col-12" id="app">
             <!-- NOV DELAVEC-->
             <div class="col-12 py-4" id="app">
-              <div class="row">
-                <div class="col-10">
-                  <h2>Dodaj novega delavca</h2>
-                </div>
-                <div class="col-2">
-                  <button
-                    type="button"
-                    class="btn btn-warning"
-                    @click="openAddForm()"
-                  >
-                    Dodaj
-                  </button>
-                </div>
-              </div>
               <div class="col-12" id="app" v-if="this.openAddFormBoolean">
                 <form>
-                  <div class="mb-3">
-                    <label class="form-label">Id delavca</label>
-                    <input
-                      v-model="worker.id"
-                      type="text"
-                      class="form-control"
-                      id="id"
-                    />
+                  <div class="row">
+                    <div class="mb-3 col-4">
+                      <label class="form-label">Id delavca</label>
+                      <input
+                        v-model="worker.id"
+                        type="text"
+                        class="form-control"
+                        id="id"
+                      />
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Ime delavca</label>
-                    <input
-                      v-model="worker.name"
-                      type="text"
-                      class="form-control"
-                      id="name"
-                    />
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Ime delavca</label>
+                      <input
+                        v-model="worker.name"
+                        type="text"
+                        class="form-control"
+                        id="name"
+                      />
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Priimek delavca</label>
+                      <input
+                        v-model="worker.surname"
+                        type="text"
+                        class="form-control"
+                        id="surname"
+                      />
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Priimek delavca</label>
-                    <input
-                      v-model="worker.surname"
-                      type="text"
-                      class="form-control"
-                      id="surname"
-                    />
+
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Rojstni dan delavca</label>
+                      <input
+                        v-model="worker.birthday"
+                        type="text"
+                        class="form-control"
+                        id="birthday"
+                      />
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label class="form-label">EMŠO delavca</label>
+                      <input
+                        v-model="worker.emso"
+                        type="text"
+                        class="form-control"
+                        id="emso"
+                      />
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Rojstni dan delavca</label>
-                    <input
-                      v-model="worker.birthday"
-                      type="text"
-                      class="form-control"
-                      id="birthday"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">EMŠO delavca</label>
-                    <input
-                      v-model="worker.emso"
-                      type="text"
-                      class="form-control"
-                      id="emso"
-                    />
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Oddelek</label>
+                      <select
+                        v-model="worker.department.id"
+                        class="form-select"
+                      >
+                        <option :value="null" disabled>Izberi oddelek</option>
+                        <option
+                          v-for="d in departments"
+                          :key="d.id"
+                          :value="d.id"
+                        >
+                          {{ d.name }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Naziv</label>
+                      <select v-model="worker.title.id" class="form-select">
+                        <option :value="null" disabled>Izberi naziv</option>
+                        <option v-for="t in titles" :key="t.id" :value="t.id">
+                          {{ t.name }}
+                        </option>
+                      </select>
+                    </div>
                   </div>
                 </form>
                 <button
@@ -157,7 +174,20 @@
               </div>
             </div>
             <!-- TABELA DELAVCEV -->
-            <h2>Seznam delavcev</h2>
+            <div class="row">
+              <div class="col-8">
+                <h3>Seznam delavcev</h3>
+              </div>
+              <div class="col-4">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  @click="openAddForm()"
+                >
+                  Dodaj novega delavca
+                </button>
+              </div>
+            </div>
             <table class="table table-striped py-4">
               <thead>
                 <tr>
@@ -166,6 +196,8 @@
                   <th scope="col">Priimek</th>
                   <th scope="col">Rojstni datum</th>
                   <th scope="col">EMŠO</th>
+                  <th scope="col">Oddelek</th>
+                  <th scope="col">Naziv</th>
                 </tr>
               </thead>
               <tbody>
@@ -175,6 +207,8 @@
                   <td>{{worker.surname}}</td>
                   <td>{{worker.birthday}}</td>
                   <td>{{worker.emso}}</td>
+                  <td>{{worker.department?.name || ''}}</td>
+                  <td>{{worker.title?.name || ''}}</td>
                   <td>
                     <button
                       @click="deleteWorker(worker.id)"
@@ -266,6 +300,31 @@
                           class="form-control"
                           id="emso"
                         />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Oddelek</label>
+                        <select
+                          v-model="worker.department.id"
+                          class="form-select"
+                        >
+                          <option :value="null" disabled>Izberi oddelek</option>
+                          <option
+                            v-for="d in departments"
+                            :key="d.id"
+                            :value="d.id"
+                          >
+                            {{ d.name }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Naziv</label>
+                        <select v-model="worker.title.id" class="form-select">
+                          <option :value="null" disabled>Izberi naziv</option>
+                          <option v-for="t in titles" :key="t.id" :value="t.id">
+                            {{ t.name }}
+                          </option>
+                        </select>
                       </div>
                     </form>
                   </div>
