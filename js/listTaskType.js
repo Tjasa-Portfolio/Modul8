@@ -41,8 +41,8 @@ createApp({
         .put("http://localhost:8080/taskType/updateTaskType", this.taskType)
         .then((response) => {
           this.loadAllTaskTypes();
-          this.dtaskType.id = "";
-          this.dtaskType.name = "";
+          this.taskType.id = "";
+          this.taskType.name = "";
         })
         .catch((error) => console.error(error));
     },

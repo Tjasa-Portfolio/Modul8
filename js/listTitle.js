@@ -41,6 +41,8 @@ createApp({
         .put("http://localhost:8080/title/updateTitle", this.title)
         .then((response) => {
           this.loadAllTitles();
+          this.title.id = "";
+          this.title.name = "";
         })
         .catch((error) => console.error(error));
     },
