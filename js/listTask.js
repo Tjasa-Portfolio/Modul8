@@ -5,7 +5,7 @@ createApp({
     return {
       tasks: [],
       statuses: ["waiting", "in progress", "finished"],
-      priorities: ["Low", "medium", "high"],
+      priorities: ["low", "medium", "high"],
       workers: [],
       taskTypes: [],
       task: {

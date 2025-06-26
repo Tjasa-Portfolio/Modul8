@@ -221,94 +221,97 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="task in tasks" @click="selectTask(task)">
-                  <th scope="row">{{task.id}}</th>
-                  <td>{{task.name}}</td>
-                  <!--<td>{{task.description}}</td>
-                  <td>{{task.startDate}}</td>
-                  <td>{{task.endDate}}</td>-->
-                  <td>
-                    {{task.worker?.name || ''}} {{task.worker?.surname || ''}}
-                  </td>
-                  <td>
-                    <img
-                      v-if="task.status=='finished'"
-                      src="./img/status/check.png"
-                      alt="finished"
-                      style="width: 28px"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Finished"
-                    />
-                    <img
-                      v-if="task.status=='waiting'"
-                      src="./img/status/stop-button.png"
-                      alt="waiting"
-                      style="width: 28px"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Waiting"
-                    />
-                    <img
-                      v-if="task.status=='in progress'"
-                      src="./img/status/work-in-progress.png"
-                      alt="in progress"
-                      style="width: 28px"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="In Progress"
-                    />
-                  </td>
-                  <td>
-                    <img
-                      v-if="task.priority=='medium'"
-                      src="./img/nujnost/medium.png"
-                      alt="finished"
-                      style="width: 28px"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Medium"
-                    />
-                    <img
-                      v-if="task.priority=='low'"
-                      src="./img/nujnost/low.png"
-                      alt="waiting"
-                      style="width: 28px"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="low"
-                    />
-                    <img
-                      v-if="task.priority=='high'"
-                      src="./img/nujnost/high.png"
-                      alt="in progress"
-                      style="width: 28px"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="High"
-                    />
-                  </td>
-                  <td>{{task.taskType?.name || ''}}</td>
+                <template v-for="task in tasks" :key="task.id">
+                  <!-- click in se expanda vrstica -->
+                  <tr
+                    class="clickable-row"
+                    data-bs-toggle="collapse"
+                    :data-bs-target="`#details-${task.id}`"
+                    aria-expanded="false"
+                    style="cursor: pointer"
+                  >
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.name }}</td>
+                    <td>
+                      {{ task.worker?.name || '' }} {{ task.worker?.surname ||
+                      '' }}
+                    </td>
+                    <td>
+                      <img
+                        v-if="task.status==='finished'"
+                        src="./img/status/check.png"
+                        alt="finished"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else-if="task.status==='waiting'"
+                        src="./img/status/stop-button.png"
+                        alt="waiting"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else
+                        src="./img/status/work-in-progress.png"
+                        alt="in-progress"
+                        style="width: 28px"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        v-if="task.priority==='high'"
+                        src="./img/nujnost/high.png"
+                        alt="high"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else-if="task.priority==='medium'"
+                        src="./img/nujnost/medium.png"
+                        alt="medium"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else
+                        src="./img/nujnost/low.png"
+                        alt="low"
+                        style="width: 28px"
+                      />
+                    </td>
+                    <td>{{ task.taskType?.name || '' }}</td>
+                    <td>
+                      <button
+                        @click.stop="deleteTask(task.id)"
+                        class="btn btn-danger btn-sm"
+                      >
+                        Izbriši
+                      </button>
+                      <button
+                        class="btn btn-primary btn-sm ms-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        @click.stop="selectTask(task)"
+                      >
+                        Spremeni
+                      </button>
+                    </td>
+                  </tr>
 
-                  <td>
-                    <button
-                      @click="deleteTask(task.id)"
-                      type="button"
-                      class="btn btn-danger"
-                    >
-                      Izbriši
-                    </button>
-                    <button
-                      style="margin-left: 10px"
-                      type="button"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                    >
-                      Spremeni
-                    </button>
-                  </td>
-                </tr>
+                  <!-- skriti detajli -->
+                  <tr class="collapse" :id="`details-${task.id}`">
+                    <td colspan="8" class="bg-light">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <strong>Začetek:</strong> {{ task.startDate }}
+                        </div>
+                        <div class="col-md-4">
+                          <strong>Konec:</strong> {{ task.endDate }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div><strong>Opis:</strong> {{ task.description }}</div>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
               </tbody>
             </table>
 
