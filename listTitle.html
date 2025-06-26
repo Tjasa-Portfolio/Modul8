@@ -78,39 +78,27 @@
           <div class="col-12" id="app">
             <!-- NOV naziv-->
             <div class="col-12 py-4" id="app">
-              <div class="row">
-                <div class="col-10">
-                  <h2>Dodaj nov naziv</h2>
-                </div>
-                <div class="col-2">
-                  <button
-                    type="button"
-                    class="btn btn-warning"
-                    @click="openAddForm()"
-                  >
-                    Dodaj
-                  </button>
-                </div>
-              </div>
               <div class="col-12" id="app" v-if="this.openAddFormBoolean">
                 <form>
-                  <div class="mb-3">
-                    <label class="form-label">Id naziva</label>
-                    <input
-                      v-model="title.id"
-                      type="text"
-                      class="form-control"
-                      id="id"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Ime naziva</label>
-                    <input
-                      v-model="title.name"
-                      type="text"
-                      class="form-control"
-                      id="name"
-                    />
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Id naziva</label>
+                      <input
+                        v-model="title.id"
+                        type="text"
+                        class="form-control"
+                        id="id"
+                      />
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Ime naziva</label>
+                      <input
+                        v-model="title.name"
+                        type="text"
+                        class="form-control"
+                        id="name"
+                      />
+                    </div>
                   </div>
                 </form>
                 <button
@@ -123,7 +111,20 @@
               </div>
             </div>
             <!-- TABELA tipov -->
-            <h2>Seznam tipov nalog</h2>
+            <div class="row">
+              <div class="col-8">
+                <h3>Seznam nazivov</h3>
+              </div>
+              <div class="col-4">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  @click="openAddForm()"
+                >
+                  Dodaj nov naziv
+                </button>
+              </div>
+            </div>
             <table class="table table-striped py-4">
               <thead>
                 <tr>
