@@ -107,7 +107,7 @@
                 <button
                   @click="sendTaskTypes()"
                   type="submit"
-                  class="btn btn-primary"
+                  class="btn btn-dark"
                 >
                   Potrdi
                 </button>
@@ -121,7 +121,7 @@
               <div class="col-4">
                 <button
                   type="button"
-                  class="btn btn-warning"
+                  class="btn btn-warning btn-sm"
                   @click="openAddForm()"
                 >
                   Dodaj nov tip
@@ -142,18 +142,18 @@
                 >
                   <th scope="row">{{taskType.id}}</th>
                   <td>{{taskType.name}}</td>
-                  <td>
+                  <td class="d-flex justify-content-end align-items-center">
                     <button
                       @click="deleteTaskType(taskType.id)"
                       type="button"
-                      class="btn btn-danger"
+                      class="btn btn-secondary btn-sm"
                     >
                       Izbriši
                     </button>
                     <button
                       style="margin-left: 10px"
                       type="button"
-                      class="btn btn-primary"
+                      class="btn btn-dark btn-sm"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
                     >
@@ -219,7 +219,7 @@
                     </button>
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      class="btn btn-dark"
                       @click="updateTaskType()"
                       data-bs-dismiss="modal"
                     >

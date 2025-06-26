@@ -181,11 +181,7 @@
                     </div>
                   </div>
                 </form>
-                <button
-                  @click="sendTask()"
-                  type="submit"
-                  class="btn btn-primary"
-                >
+                <button @click="sendTask()" type="submit" class="btn btn-dark">
                   Potrdi
                 </button>
               </div>
@@ -195,10 +191,10 @@
               <div class="col-8">
                 <h3>Seznam nalog</h3>
               </div>
-              <div class="col-4">
+              <div class="col-4 d-flex justify-content-end align-items-center">
                 <button
                   type="button"
-                  class="btn btn-warning"
+                  class="btn btn-warning btn-sm"
                   @click="openAddForm()"
                 >
                   Dodaj novo nalogo
@@ -210,9 +206,6 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Naslov</th>
-                  <!--<th scope="col">Opis</th>
-                  <th scope="col">Začetek</th>
-                  <th scope="col">Konec</th>-->
 
                   <th scope="col">Izvajalec</th>
                   <th scope="col">Status</th>
@@ -277,15 +270,15 @@
                       />
                     </td>
                     <td>{{ task.taskType?.name || '' }}</td>
-                    <td>
+                    <td class="d-flex justify-content-end align-items-center">
                       <button
                         @click.stop="deleteTask(task.id)"
-                        class="btn btn-danger btn-sm"
+                        class="btn btn-secondary btn-sm"
                       >
                         Izbriši
                       </button>
                       <button
-                        class="btn btn-primary btn-sm ms-2"
+                        class="btn btn-dark btn-sm ms-2"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                         @click.stop="selectTask(task)"
@@ -458,7 +451,7 @@
                     </button>
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      class="btn btn-dark"
                       @click="updateTask()"
                       data-bs-dismiss="modal"
                     >

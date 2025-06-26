@@ -167,7 +167,7 @@
                 <button
                   @click="sendWorker()"
                   type="submit"
-                  class="btn btn-primary"
+                  class="btn btn-dark"
                 >
                   Potrdi
                 </button>
@@ -181,7 +181,7 @@
               <div class="col-4">
                 <button
                   type="button"
-                  class="btn btn-warning"
+                  class="btn btn-warning btn-sm"
                   @click="openAddForm()"
                 >
                   Dodaj novega delavca
@@ -209,18 +209,18 @@
                   <td>{{worker.emso}}</td>
                   <td>{{worker.department?.name || ''}}</td>
                   <td>{{worker.title?.name || ''}}</td>
-                  <td>
+                  <td class="d-flex justify-content-end align-items-center">
                     <button
                       @click="deleteWorker(worker.id)"
                       type="button"
-                      class="btn btn-danger"
+                      class="btn btn-secondary btn-sm"
                     >
                       Izbriši
                     </button>
                     <button
                       style="margin-left: 10px"
                       type="button"
-                      class="btn btn-primary"
+                      class="btn btn-dark btn-sm"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
                     >
@@ -331,14 +331,14 @@
                   <div class="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      class="btn btn-secondary btn-sm"
                       data-bs-dismiss="modal"
                     >
                       Zapri
                     </button>
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      class="btn btn-dark btn-sm"
                       @click="updateWorker()"
                       data-bs-dismiss="modal"
                     >
