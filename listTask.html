@@ -81,84 +81,104 @@
           <div class="col-12" id="app">
             <!-- NOVA NALOGA-->
             <div class="col-12 py-4" id="app">
-              <div class="row">
-                <div class="col-10">
-                  <h2>Dodaj novo nalogo</h2>
-                </div>
-                <div class="col-2">
-                  <button
-                    type="button"
-                    class="btn btn-warning"
-                    @click="openAddForm()"
-                  >
-                    <span class="material-symbols-outlined"> Dodaj </span>
-                  </button>
-                </div>
-              </div>
               <div class="col-12" id="app" v-if="this.openAddFormBoolean">
                 <form>
-                  <div class="mb-3">
-                    <label class="form-label">Id naloge</label>
-                    <input
-                      v-model="task.id"
-                      type="text"
-                      class="form-control"
-                      id="id"
-                    />
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Id naloge</label>
+                      <input
+                        v-model="task.id"
+                        type="text"
+                        class="form-control"
+                        id="id"
+                      />
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Ime naloge</label>
-                    <input
-                      v-model="task.name"
-                      type="text"
-                      class="form-control"
-                      id="name"
-                    />
+
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Ime naloge</label>
+                      <input
+                        v-model="task.name"
+                        type="text"
+                        class="form-control"
+                        id="name"
+                      />
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Opis naloge</label>
+                      <input
+                        v-model="task.description"
+                        type="text"
+                        class="form-control"
+                        id="description"
+                      />
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Opis naloge</label>
-                    <input
-                      v-model="task.description"
-                      type="text"
-                      class="form-control"
-                      id="description"
-                    />
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Začetek</label>
+                      <input
+                        v-model="task.startDate"
+                        type="text"
+                        class="form-control"
+                        id="starttDate"
+                      />
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Konec</label>
+                      <input
+                        v-model="task.endDate"
+                        type="text"
+                        class="form-control"
+                        id="endDate"
+                      />
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Začetek</label>
-                    <input
-                      v-model="task.startDate"
-                      type="text"
-                      class="form-control"
-                      id="starttDate"
-                    />
+
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">izvajalec</label>
+                      <select v-model="task.worker.id" class="form-select">
+                        <option :value="null" disabled>Izberi izvajalca</option>
+                        <option v-for="w in workers" :key="w.id" :value="w.id">
+                          {{ w.name }} {{ w.surname }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Status</label>
+                      <select v-model="task.status" class="form-select">
+                        <option disabled value="">Izberi status</option>
+                        <option v-for="s in statuses" :key="s" :value="s">
+                          {{ s }}
+                        </option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Konec</label>
-                    <input
-                      v-model="task.endDate"
-                      type="text"
-                      class="form-control"
-                      id="endDate"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Status</label>
-                    <input
-                      v-model="task.status"
-                      type="text"
-                      class="form-control"
-                      id="status"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Nujnost</label>
-                    <input
-                      v-model="task.priority"
-                      type="text"
-                      class="form-control"
-                      id="priority"
-                    />
+                  <div class="row">
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Nujnost</label>
+                      <select v-model="task.priority" class="form-select">
+                        <option disabled value="">Izberi nujnost</option>
+                        <option v-for="p in priorities" :key="p" :value="p">
+                          {{ p }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label class="form-label">Tip</label>
+                      <select v-model="task.taskType.id" class="form-select">
+                        <option disabled value="">Izberi Tip</option>
+                        <option
+                          v-for="t in taskTypes"
+                          :key="t.id"
+                          :value="t.id"
+                        >
+                          {{ t.name }}
+                        </option>
+                      </select>
+                    </div>
                   </div>
                 </form>
                 <button
@@ -171,28 +191,49 @@
               </div>
             </div>
             <!-- TABELA Nalog -->
-            <h2>Seznam Nalog</h2>
+            <div class="row">
+              <div class="col-8">
+                <h3>Seznam nalog</h3>
+              </div>
+              <div class="col-4">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  @click="openAddForm()"
+                >
+                  Dodaj novo nalogo
+                </button>
+              </div>
+            </div>
             <table class="table table-striped py-4">
               <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Naslov</th>
-                  <th scope="col">Opis</th>
+                  <!--<th scope="col">Opis</th>
                   <th scope="col">Začetek</th>
-                  <th scope="col">Konec</th>
+                  <th scope="col">Konec</th>-->
+
+                  <th scope="col">Izvajalec</th>
                   <th scope="col">Status</th>
                   <th scope="col">Nujnost</th>
+                  <th scope="col">Tip</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="task in tasks" @click="selectTask(task)">
                   <th scope="row">{{task.id}}</th>
                   <td>{{task.name}}</td>
-                  <td>{{task.description}}</td>
+                  <!--<td>{{task.description}}</td>
                   <td>{{task.startDate}}</td>
-                  <td>{{task.endDate}}</td>
+                  <td>{{task.endDate}}</td>-->
+                  <td>
+                    {{task.worker?.name || ''}} {{task.worker?.surname || ''}}
+                  </td>
                   <td>{{task.status}}</td>
                   <td>{{task.priority}}</td>
+                  <td>{{task.taskType?.name || ''}}</td>
+
                   <td>
                     <button
                       @click="deleteTask(task.id)"
@@ -240,68 +281,111 @@
                   </div>
                   <div class="modal-body">
                     <form>
-                      <div class="mb-3">
-                        <label class="form-label">Id naloge</label>
-                        <input
-                          v-model="task.id"
-                          type="text"
-                          class="form-control"
-                          id="id"
-                        />
+                      <div class="row">
+                        <div class="mb-3 col-6">
+                          <label class="form-label">Id naloge</label>
+                          <input
+                            v-model="task.id"
+                            type="text"
+                            class="form-control"
+                            id="id"
+                          />
+                        </div>
                       </div>
-                      <div class="mb-3">
-                        <label class="form-label">Ime naloge</label>
-                        <input
-                          v-model="task.name"
-                          type="text"
-                          class="form-control"
-                          id="name"
-                        />
+
+                      <div class="row">
+                        <div class="mb-3 col-6">
+                          <label class="form-label">Ime naloge</label>
+                          <input
+                            v-model="task.name"
+                            type="text"
+                            class="form-control"
+                            id="name"
+                          />
+                        </div>
+                        <div class="mb-3 col-6">
+                          <label class="form-label">Opis naloge</label>
+                          <input
+                            v-model="task.description"
+                            type="text"
+                            class="form-control"
+                            id="description"
+                          />
+                        </div>
                       </div>
-                      <div class="mb-3">
-                        <label class="form-label">Opis naloge</label>
-                        <input
-                          v-model="task.description"
-                          type="text"
-                          class="form-control"
-                          id="description"
-                        />
+                      <div class="row">
+                        <div class="mb-3 col-6">
+                          <label class="form-label">Začetek</label>
+                          <input
+                            v-model="task.startDate"
+                            type="text"
+                            class="form-control"
+                            id="starttDate"
+                          />
+                        </div>
+                        <div class="mb-3 col-6">
+                          <label class="form-label">Konec</label>
+                          <input
+                            v-model="task.endDate"
+                            type="text"
+                            class="form-control"
+                            id="endDate"
+                          />
+                        </div>
                       </div>
-                      <div class="mb-3">
-                        <label class="form-label">Začetek</label>
-                        <input
-                          v-model="task.startDate"
-                          type="text"
-                          class="form-control"
-                          id="starttDate"
-                        />
+
+                      <div class="row">
+                        <div class="mb-3 col-6">
+                          <label class="form-label">izvajalec</label>
+                          <select v-model="task.worker.id" class="form-select">
+                            <option :value="null" disabled>
+                              Izberi izvajalca
+                            </option>
+                            <option
+                              v-for="w in workers"
+                              :key="w.id"
+                              :value="w.id"
+                            >
+                              {{ w.name }} {{ w.surname }}
+                            </option>
+                          </select>
+                        </div>
+                        <div class="mb-3 col-6">
+                          <label class="form-label">Status</label>
+                          <select v-model="task.status" class="form-select">
+                            <option disabled value="">Izberi status</option>
+                            <option v-for="s in statuses" :key="s" :value="s">
+                              {{ s }}
+                            </option>
+                          </select>
+                        </div>
                       </div>
-                      <div class="mb-3">
-                        <label class="form-label">Konec</label>
-                        <input
-                          v-model="task.endDate"
-                          type="text"
-                          class="form-control"
-                          id="endDate"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Status</label>
-                        <input
-                          v-model="task.status"
-                          type="text"
-                          class="form-control"
-                          id="status"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Nujnost</label>
-                        <input
-                          v-model="task.priority"
-                          type="text"
-                          class="form-control"
-                          id="priority"
-                        />
+                      <div class="row">
+                        <div class="mb-3 col-6">
+                          <label class="form-label">Nujnost</label>
+                          <select v-model="task.priority" class="form-select">
+                            <option disabled value="">Izberi nujnost</option>
+                            <option v-for="p in priorities" :key="p" :value="p">
+                              {{ p }}
+                            </option>
+                          </select>
+                        </div>
+                        <div class="mb-3 col-6">
+                          <label class="form-label">Tip</label>
+                          <select
+                            v-model="task.taskType.id"
+                            class="form-select"
+                          >
+                            <option disabled value="">Izberi Tip</option>
+                            <option
+                              v-for="t in taskTypes"
+                              :key="t.id"
+                              :value="t.id"
+                            >
+                              {{ t.name }}
+                            </option>
+                          </select>
+                        </div>
                       </div>
                     </form>
                   </div>

@@ -4,6 +4,10 @@ createApp({
   data() {
     return {
       tasks: [],
+      statuses: ["waiting", "in progress", "finished"],
+      priorities: ["Low", "medium", "high"],
+      workers: [],
+      taskTypes: [],
       task: {
         id: "",
         name: "",
@@ -12,12 +16,16 @@ createApp({
         endDate: "",
         status: "",
         priority: "",
+        worker: { id: "" },
+        taskType: { id: "" },
       },
       openAddFormBoolean: false,
     };
   },
   created() {
     this.loadAllTasks();
+    this.loadAllWorkers();
+    this.loadAllTaskTypes();
   },
   methods: {
     loadAllTasks() {
@@ -25,10 +33,26 @@ createApp({
         .get("http://localhost:8080/task/getAllTasks")
         .then((response) => {
           this.tasks = response.data;
+          console.log("response", response);
         })
         .catch((error) => console.error(error));
     },
-
+    loadAllWorkers() {
+      axios
+        .get("http://localhost:8080/worker/getAllWorkers")
+        .then((response) => {
+          this.workers = response.data;
+        })
+        .catch((error) => console.error(error));
+    },
+    loadAllTaskTypes() {
+      axios
+        .get("http://localhost:8080/taskType/getAlltaskTypes")
+        .then((response) => {
+          this.taskTypes = response.data;
+        })
+        .catch((error) => console.error(error));
+    },
     sendTask() {
       axios
         .post("http://localhost:8080/task/addTask", this.task)
@@ -41,6 +65,8 @@ createApp({
           this.task.endDate = "";
           this.task.status = "";
           this.task.priority = "";
+          this.task.worker.id = "";
+          this.task.taskType.id = "";
           this.openAddForm();
         })
         .catch((error) => console.error(error));
@@ -58,6 +84,8 @@ createApp({
           this.task.endDate = "";
           this.task.status = "";
           this.task.priority = "";
+          this.task.worker.id = "";
+          this.task.taskType.id = "";
         })
         .catch((error) => console.error(error));
     },
@@ -74,6 +102,8 @@ createApp({
           this.task.endDate = "";
           this.task.status = "";
           this.task.priority = "";
+          this.task.worker.id = "";
+          this.task.taskType.id = "";
         })
         .catch((error) => console.error(error));
     },
@@ -86,6 +116,8 @@ createApp({
       this.task.endDate = t.endDate;
       this.task.status = t.status;
       this.task.priority = t.priority;
+      this.task.worker.id = t.worker.id;
+      this.task.taskType.id = t.taskType.id;
     },
 
     openAddForm() {
