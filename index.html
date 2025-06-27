@@ -1,16 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Task Manager</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script type="module" src="js/listIndex.js"></script>
-</head>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Task Manager</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="js/listIndex.js"></script>
+  </head>
 
   <body class="d-flex flex-column min-vh-100">
     <!--NAVIGACIJA-->
@@ -32,11 +34,8 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="index.html"
-                  >Domov</a
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  ><u>Domov</u></a
                 >
               </li>
               <li class="nav-item">
@@ -73,163 +72,203 @@
       </nav>
     </div>
 
-    <!--<div class="container flex-grow-1">
+    <div class="container flex-grow-1">
       <div class="container">
         <div class="row">
           <div class="col-12" id="app">
-             NOV oddelek
-            <div class="col-12 py-4" id="app">
-              <div class="row">
-                <div class="col-10">
-                  <h2>Dodaj nov oddelek</h2>
-                </div>
-                <div class="col-2">
-                  <button
-                    type="button"
-                    class="btn btn-warning"
-                    @click="openAddForm()"
-                  >
-                    Dodaj
-                  </button>
-                </div>
-              </div>
-              <div class="col-12" id="app" v-if="this.openAddFormBoolean">
-                <form>
-                  <div class="mb-3">
-                    <label class="form-label">Id oddelka</label>
-                    <input
-                      v-model="department.id"
-                      type="text"
-                      class="form-control"
-                      id="id"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Naziv oddelka</label>
-                    <input
-                      v-model="department.name"
-                      type="text"
-                      class="form-control"
-                      id="name"
-                    />
-                  </div>
-                </form>
-                <button
-                  @click="sendDepartment()"
-                  type="submit"
-                  class="btn btn-primary"
-                >
-                  Potrdi
-                </button>
-              </div>
+            <!-- TABELA Nalog status-->
+            <div class="row">
+              <h3>Seznam končanih nalog</h3>
             </div>
-            TABELA Oddelkov 
-            <h2>Seznam Oddelkov</h2>
             <table class="table table-striped py-4">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Naziv</th>
+                  <th scope="col">Naslov</th>
+
+                  <th scope="col">Izvajalec</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Nujnost</th>
+                  <th scope="col">Tip</th>
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  v-for="department in departments"
-                  @click="selectDepartment(department)"
-                >
-                  <th scope="row">{{department.id}}</th>
-                  <td>{{department.name}}</td>
-                  <td>
-                    <button
-                      @click="deleteDepartment(department.id)"
-                      type="button"
-                      class="btn btn-danger"
-                    >
-                      Izbriši
-                    </button>
-                    <button
-                      style="margin-left: 10px"
-                      type="button"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                    >
-                      Spremeni
-                    </button>
-                  </td>
-                </tr>
+                <template v-for="task in tasksByStatus" :key="task.id">
+                  <!-- click in se expanda vrstica -->
+                  <tr
+                    class="clickable-row"
+                    data-bs-toggle="collapse"
+                    :data-bs-target="`#details-${task.id}`"
+                    aria-expanded="false"
+                    style="cursor: pointer"
+                  >
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.name }}</td>
+                    <td>
+                      {{ task.worker?.name || '' }} {{ task.worker?.surname ||
+                      '' }}
+                    </td>
+                    <td>
+                      <img
+                        v-if="task.status==='finished'"
+                        src="./img/status/check.png"
+                        alt="finished"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else-if="task.status==='waiting'"
+                        src="./img/status/stop-button.png"
+                        alt="waiting"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else
+                        src="./img/status/work-in-progress.png"
+                        alt="in-progress"
+                        style="width: 28px"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        v-if="task.priority==='high'"
+                        src="./img/nujnost/high.png"
+                        alt="high"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else-if="task.priority==='medium'"
+                        src="./img/nujnost/medium.png"
+                        alt="medium"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else
+                        src="./img/nujnost/low.png"
+                        alt="low"
+                        style="width: 28px"
+                      />
+                    </td>
+                    <td>{{ task.taskType?.name || '' }}</td>
+                  </tr>
+
+                  <!-- skriti detajli -->
+                  <tr class="collapse" :id="`details-${task.id}`">
+                    <td colspan="8" class="bg-light">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <strong>Začetek:</strong> {{ task.startDate }}
+                        </div>
+                        <div class="col-md-4">
+                          <strong>Konec:</strong> {{ task.endDate }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div><strong>Opis:</strong> {{ task.description }}</div>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
               </tbody>
             </table>
 
-             UPDATE DELAVCA MODAL 
-
-             Modal 
-            <div
-              class="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                      Sprememba delavca
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                      <div class="mb-3">
-                        <label class="form-label">Id oddelka</label>
-                        <input
-                          v-model="department.id"
-                          type="text"
-                          class="form-control"
-                          id="id"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Naziv oddelka</label>
-                        <input
-                          v-model="department.name"
-                          type="text"
-                          class="form-control"
-                          id="name"
-                        />
-                      </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Zapri
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      @click="updateDepartment()"
-                      data-bs-dismiss="modal"
-                    >
-                      Shrani
-                    </button>
-                  </div>
-                </div>
-              </div>
+            <!-- TABELA Nalog -->
+            <div class="row">
+              <h3>Seznam nujnih nalog</h3>
             </div>
+            <table class="table table-striped py-4">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Naslov</th>
+
+                  <th scope="col">Izvajalec</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Nujnost</th>
+                  <th scope="col">Tip</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template v-for="task in tasksByPriority" :key="task.id">
+                  <!-- click in se expanda vrstica -->
+                  <tr
+                    class="clickable-row"
+                    data-bs-toggle="collapse"
+                    :data-bs-target="`#details-${task.id}-a`"
+                    aria-expanded="false"
+                    style="cursor: pointer"
+                  >
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.name }}</td>
+                    <td>
+                      {{ task.worker?.name || '' }} {{ task.worker?.surname ||
+                      '' }}
+                    </td>
+                    <td>
+                      <img
+                        v-if="task.status==='finished'"
+                        src="./img/status/check.png"
+                        alt="finished"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else-if="task.status==='waiting'"
+                        src="./img/status/stop-button.png"
+                        alt="waiting"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else
+                        src="./img/status/work-in-progress.png"
+                        alt="in-progress"
+                        style="width: 28px"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        v-if="task.priority==='high'"
+                        src="./img/nujnost/high.png"
+                        alt="high"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else-if="task.priority==='medium'"
+                        src="./img/nujnost/medium.png"
+                        alt="medium"
+                        style="width: 28px"
+                      />
+                      <img
+                        v-else
+                        src="./img/nujnost/low.png"
+                        alt="low"
+                        style="width: 28px"
+                      />
+                    </td>
+                    <td>{{ task.taskType?.name || '' }}</td>
+                  </tr>
+
+                  <!-- skriti detajli -->
+                  <tr class="collapse" :id="`details-${task.id}-a`">
+                    <td colspan="8" class="bg-light">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <strong>Začetek:</strong> {{ task.startDate }}
+                        </div>
+                        <div class="col-md-4">
+                          <strong>Konec:</strong> {{ task.endDate }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div><strong>Opis:</strong> {{ task.description }}</div>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    </div>-->
+    </div>
 
     <div class="container">
       <footer class="mt-auto bg-light">
@@ -249,5 +288,4 @@
       crossorigin="anonymous"
     ></script>
   </body>
-
 </html>

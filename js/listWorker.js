@@ -93,6 +93,8 @@ createApp({
           this.worker.surname = "";
           this.worker.birthday = "";
           this.worker.emso = "";
+          this.worker.department.id = "";
+          this.worker.title.id = "";
         })
         .catch((error) => console.error(error));
     },

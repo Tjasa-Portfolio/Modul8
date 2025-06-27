@@ -86,6 +86,7 @@ createApp({
           this.task.priority = "";
           this.task.worker.id = "";
           this.task.taskType.id = "";
+          console.log("this.task.worker.id", this.task.worker.id);
         })
         .catch((error) => console.error(error));
     },
