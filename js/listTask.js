@@ -16,7 +16,7 @@ createApp({
         endDate: "",
         status: "",
         priority: "",
-        worker: { id: "" },
+        worker: { id: null },
         taskType: { id: "" },
       },
       openAddFormBoolean: false,
