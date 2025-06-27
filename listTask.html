@@ -186,6 +186,32 @@
                 </button>
               </div>
             </div>
+
+            <!-- dodal nov task -->
+            <div
+              class="alert alert-success"
+              role="alert"
+              v-if="this.addedNewTaskBoolean"
+            >
+              Uspešno ste dodali novo nalogo!
+            </div>
+
+            <!-- spremenil task -->
+            <div
+              class="alert alert-primary"
+              role="alert"
+              v-if="this.updatedNewTaskBoolean"
+            >
+              Uspešno ste spremenili nalogo!
+            </div>
+            <!-- izbrisal task -->
+            <div
+              class="alert alert-danger"
+              role="alert"
+              v-if="this.deletedNewTaskBoolean"
+            >
+              Uspešno ste izbrisali nalogo!
+            </div>
             <!-- TABELA Nalog -->
             <div class="row">
               <div class="col-8">

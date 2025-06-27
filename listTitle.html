@@ -109,6 +109,32 @@
                 </button>
               </div>
             </div>
+            <!-- dodal nov title -->
+            <div
+              class="alert alert-success"
+              role="alert"
+              v-if="this.addedNewTitleBoolean"
+            >
+              Uspešno ste dodali nov naziv!
+            </div>
+
+            <!-- spremenil title -->
+            <div
+              class="alert alert-primary"
+              role="alert"
+              v-if="this.updatedNewTitleBoolean"
+            >
+              Uspešno ste spremenili naziv!
+            </div>
+            <!-- izbrisal title -->
+            <div
+              class="alert alert-danger"
+              role="alert"
+              v-if="this.deletedNewTitleBoolean"
+            >
+              Uspešno ste izbrisali naziv!
+            </div>
+
             <!-- TABELA tipov -->
             <div class="row">
               <div class="col-8">

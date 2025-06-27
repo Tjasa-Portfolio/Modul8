@@ -20,6 +20,9 @@ createApp({
         taskType: { id: "" },
       },
       openAddFormBoolean: false,
+      addedNewTaskBoolean: false,
+      deletedNewTaskBoolean: false,
+      updatedNewTaskBoolean: false,
     };
   },
   created() {
@@ -68,6 +71,11 @@ createApp({
           this.task.worker.id = "";
           this.task.taskType.id = "";
           this.openAddForm();
+          this.addedNewTaskBoolean = true;
+
+          setTimeout(() => {
+            this.addedNewTaskBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -86,7 +94,11 @@ createApp({
           this.task.priority = "";
           this.task.worker.id = "";
           this.task.taskType.id = "";
-          console.log("this.task.worker.id", this.task.worker.id);
+          this.updatedNewTaskBoolean = true;
+
+          setTimeout(() => {
+            this.updatedNewTaskBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -105,6 +117,11 @@ createApp({
           this.task.priority = "";
           this.task.worker.id = "";
           this.task.taskType.id = "";
+          this.deletedNewTaskBoolean = true;
+
+          setTimeout(() => {
+            this.deletedNewTaskBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },

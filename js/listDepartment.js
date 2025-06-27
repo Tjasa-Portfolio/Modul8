@@ -8,6 +8,9 @@ createApp({
         name: "",
       },
       openAddFormBoolean: false,
+      addedNewDepartmentBoolean: false,
+      deletedNewDepartmentBoolean: false,
+      updatedNewDepartmentBoolean: false,
     };
   },
   created() {
@@ -31,6 +34,11 @@ createApp({
           this.department.id = "";
           this.department.name = "";
           this.openAddForm();
+          this.addedNewDepartmentBoolean = true;
+
+          setTimeout(() => {
+            this.addedNewDepartmentBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -45,6 +53,11 @@ createApp({
           this.loadAllDepartments();
           this.department.id = "";
           this.department.name = "";
+          this.updatedNewDepartmentBoolean = true;
+
+          setTimeout(() => {
+            this.updatedNewDepartmentBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -56,6 +69,11 @@ createApp({
           this.loadAllDepartments();
           this.department.id = "";
           this.department.name = "";
+          this.deletedNewDepartmentBoolean = true;
+
+          setTimeout(() => {
+            this.deletedNewDepartmentBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },

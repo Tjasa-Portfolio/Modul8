@@ -9,6 +9,10 @@ createApp({
         name: "",
       },
       openAddFormBoolean: false,
+      openAddFormBoolean: false,
+      addedNewTaskTypeBoolean: false,
+      deletedNewTaskTypeBoolean: false,
+      updatedNewTaskTypeBoolean: false,
     };
   },
   created() {
@@ -32,6 +36,11 @@ createApp({
           this.taskType.id = "";
           this.taskType.name = "";
           this.openAddForm();
+          this.addedNewTaskTypeBoolean = true;
+
+          setTimeout(() => {
+            this.addedNewTaskTypeBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -43,6 +52,11 @@ createApp({
           this.loadAllTaskTypes();
           this.taskType.id = "";
           this.taskType.name = "";
+          this.updatedNewTaskTypeBoolean = true;
+
+          setTimeout(() => {
+            this.updatedNewTaskTypeBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -54,6 +68,11 @@ createApp({
           this.loadAllTaskTypes();
           this.taskType.id = "";
           this.taskType.name = "";
+          this.deletedNewTaskTypeBoolean = true;
+
+          setTimeout(() => {
+            this.deletedNewTaskTypeBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },

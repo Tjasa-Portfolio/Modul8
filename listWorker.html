@@ -173,6 +173,31 @@
                 </button>
               </div>
             </div>
+
+            <!-- dodal nov worker-->
+            <div
+              class="alert alert-success"
+              role="alert"
+              v-if="this.addedNewWorkerBoolean"
+            >
+              Uspešno ste dodali nov naziv!
+            </div>
+            <!-- spremenil worker -->
+            <div
+              class="alert alert-primary"
+              role="alert"
+              v-if="this.updatedNewWorkerBoolean"
+            >
+              Uspešno ste spremenili delavca!
+            </div>
+            <!-- izbrisal worker -->
+            <div
+              class="alert alert-danger"
+              role="alert"
+              v-if="this.deletedNewWorkerBoolean"
+            >
+              Uspešno ste izbrisali naziv!
+            </div>
             <!-- TABELA DELAVCEV -->
             <div class="row">
               <div class="col-8">

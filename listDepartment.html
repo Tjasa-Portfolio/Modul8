@@ -109,6 +109,32 @@
                 Potrdi
               </button>
             </div>
+
+            <!-- dodal nov Department -->
+            <div
+              class="alert alert-success"
+              role="alert"
+              v-if="this.addedNewDepartmentBoolean"
+            >
+              Uspešno ste dodali nov oddelek!
+            </div>
+
+            <!-- spremenil Department -->
+            <div
+              class="alert alert-primary"
+              role="alert"
+              v-if="this.updatedNewDepartmentBoolean"
+            >
+              Uspešno ste spremenili oddelek!
+            </div>
+            <!-- izbrisal Department -->
+            <div
+              class="alert alert-danger"
+              role="alert"
+              v-if="this.deletedNewDepartmentBoolean"
+            >
+              Uspešno ste izbrisali oddelek!
+            </div>
             <!-- TABELA Oddelkov -->
             <div class="row py-4">
               <div class="col-8">

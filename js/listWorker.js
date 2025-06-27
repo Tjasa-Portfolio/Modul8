@@ -16,6 +16,9 @@ createApp({
         title: { id: "", name: "" },
       },
       openAddFormBoolean: false,
+      addedNewWorkerBoolean: false,
+      deletedNewWorkerBoolean: false,
+      updatedNewWorkerBoolean: false,
     };
   },
   created() {
@@ -63,6 +66,11 @@ createApp({
           this.worker.department.id = "";
           this.worker.title.id = "";
           this.openAddForm();
+          this.addedNewWorkerBoolean = true;
+
+          setTimeout(() => {
+            this.addedNewWorkerBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -79,6 +87,11 @@ createApp({
           this.worker.emso = "";
           this.worker.department.id = "";
           this.worker.title.id = "";
+          this.updatedNewWorkerBoolean = true;
+
+          setTimeout(() => {
+            this.updatedNewWorkerBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -95,6 +108,11 @@ createApp({
           this.worker.emso = "";
           this.worker.department.id = "";
           this.worker.title.id = "";
+          this.deletedNewWorkerBoolean = true;
+
+          setTimeout(() => {
+            this.deletedNewWorkerBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },

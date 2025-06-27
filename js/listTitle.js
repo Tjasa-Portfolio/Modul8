@@ -9,6 +9,9 @@ createApp({
         name: "",
       },
       openAddFormBoolean: false,
+      addedNewTitleBoolean: false,
+      deletedNewTitleBoolean: false,
+      updatedNewTitleBoolean: false,
     };
   },
   created() {
@@ -32,6 +35,11 @@ createApp({
           this.title.id = "";
           this.title.name = "";
           this.openAddForm();
+          this.addedNewTitleBoolean = true;
+
+          setTimeout(() => {
+            this.addedNewTitleBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -43,6 +51,11 @@ createApp({
           this.loadAllTitles();
           this.title.id = "";
           this.title.name = "";
+          this.updatedNewTitleBoolean = true;
+
+          setTimeout(() => {
+            this.updatedNewTitleBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
@@ -54,6 +67,11 @@ createApp({
           this.loadAllTitles();
           this.title.id = "";
           this.title.name = "";
+          this.deletedNewTitleBoolean = true;
+
+          setTimeout(() => {
+            this.deletedNewTitleBoolean = false;
+          }, 4000);
         })
         .catch((error) => console.error(error));
     },
