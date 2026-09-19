@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    target-branch: 'dependabot'
+    labels:
+      - 'npm dependencies'
+    commit-message:
+      prefix: 'npm'
+    assignees:
+      - 'TjasaZil'
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'Sunday'
+    target-branch: 'dependabot'
+    labels:
+      - 'actions dependencies'
+    commit-message:
+      prefix: 'actions'
+    assignees:
+      - 'TjasaZil'
