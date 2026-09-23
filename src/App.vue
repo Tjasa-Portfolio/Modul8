@@ -1,11 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Navigation from './components/navigation/NavigationComponent.vue'
+</script>
 
 <template>
-  <h1 class="text-avocado-500 border-2 border-red-700">You did it!</h1>
-  <p class="text-gray-500 dark:text-gray-400">
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <section
+    class="flex flex-col justify-start items-center py-[30px] px-2.5 bg-black-main w-full h-screen font-display"
+  >
+    <Navigation />
+  </section>
 </template>
 
 <style></style>
