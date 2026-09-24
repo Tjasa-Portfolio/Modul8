@@ -22,10 +22,20 @@ const toggleMenu = () => {
         ><p>ikona</p>
         <p class="font-logo text-white-main font-normal text-[41px]">Modul8</p></span
       >
-      <Button text="test Text" @click="toggleMenu" />
+      <Button class="md:hidden" text="test Text" @click="toggleMenu" />
+      <ul class="md:flex flex-row justify-end items-end w-full gap-1.5 hidden">
+        <li
+          v-for="item in list_items"
+          :key="item.id"
+          class="text-white-main text-lg font-normal hover:text-orange-main hover:font-extrabold hover:border-b-4 hover:border-b-orange-main cursor-pointer md:mx-2 lg:mx-10"
+        >
+          {{ item.text }}
+        </li>
+        <Button text="Kontakt" />
+      </ul>
     </div>
 
-    <ul v-if="isOpen" class="flex flex-col justify-center items-end w-full gap-1.5">
+    <ul v-if="isOpen" class="flex flex-col justify-center items-end w-full gap-1.5 md:hidden">
       <li
         v-for="item in list_items"
         :key="item.id"
