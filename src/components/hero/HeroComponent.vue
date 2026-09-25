@@ -1,38 +1,45 @@
 <script setup lang="ts">
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay, FreeMode } from 'swiper/modules'
+import 'swiper/css'
+
 import Navigation from '../navigation/NavigationComponent.vue'
 import Button from '../shared/ButtonComponent.vue'
-
-const onSwiper = (swiper) => {
-  console.log(swiper)
-}
-const onSlideChange = () => {
-  console.log('slide change')
-}
 </script>
 <template>
   <section
-    class="flex flex-col justify-start items-center py-[30px] px-2.5 bg-black-main w-full h-screen font-display text-white-main"
+    class="flex flex-col justify-start items-center py-7.5 px-2.5 bg-black-main w-full h-screen font-display text-white-main"
   >
     <Navigation />
     <!-- HERO-->
-    <div class="w-full h-screen flex flex-col justify-end items-start gap-[30px]">
+    <div class="w-full h-screen flex flex-col justify-end items-start gap-7.5">
       <h1 class="font-black text-[50px] text-left">Celostne digitalne rešitve na enem mestu</h1>
       <p class="font-normal text-lg text-left">
         Premišljeno uporabniško izkušnjo in digitalni razvoj združujemo v celovite rešitve z
         dolgoročno vrednostjo.
       </p>
       <Button text="Začnimo sodelovanje" />
-      <swiper
-        :slides-per-view="3"
+      <Swiper
+        class="hero-swiper w-full"
+        :modules="[Autoplay, FreeMode]"
+        :free-mode="{ enabled: true, momentum: false }"
+        :slides-per-view="'auto'"
         :space-between="50"
-        @swiper="onSwiper"
-        @slideChange="onSlideChange"
+        :speed="5000"
+        :autoplay="{ delay: 1, disableOnInteraction: false }"
+        :loop="true"
+        :allow-touch-move="false"
       >
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-        ...
-      </swiper>
+        <SwiperSlide v-for="slide in 15" :key="slide" class="w-auto!">
+          Slide {{ slide }}
+        </SwiperSlide>
+      </Swiper>
     </div>
   </section>
 </template>
+
+<style scoped>
+.hero-swiper :deep(.swiper-wrapper) {
+  transition-timing-function: linear;
+}
+</style>
