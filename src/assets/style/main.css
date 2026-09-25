@@ -5,6 +5,7 @@
 @theme {
   --font-display: 'Poppins', sans-serif;
   --color-light-gray: rgba(153, 153, 153, 0.5);
+  --color-footer-border: rgba(255, 255, 255, 0.2);
   --font-logo: 'Inter', sans-serif;
 
   /*NAVIGATION*/
