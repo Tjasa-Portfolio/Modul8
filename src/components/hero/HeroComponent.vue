@@ -12,13 +12,15 @@ import Button from '../shared/ButtonComponent.vue'
   >
     <Navigation />
     <!-- HERO-->
-    <div class="w-full h-screen flex flex-col justify-end items-start gap-7.5">
-      <h1 class="font-black text-[50px] text-left">Celostne digitalne rešitve na enem mestu</h1>
-      <p class="font-normal text-lg text-left">
-        Premišljeno uporabniško izkušnjo in digitalni razvoj združujemo v celovite rešitve z
-        dolgoročno vrednostjo.
-      </p>
-      <Button text="Začnimo sodelovanje" />
+    <div class="w-full h-screen flex flex-col justify-end items-start gap-7.5 max-w-[1683px]">
+      <div class="w-full flex flex-col justify-end items-start gap-7.5 max-w-182.75">
+        <h1 class="font-black text-[50px] text-left">Celostne digitalne rešitve na enem mestu</h1>
+        <p class="font-normal text-lg text-left">
+          Premišljeno uporabniško izkušnjo in digitalni razvoj združujemo v celovite rešitve z
+          dolgoročno vrednostjo.
+        </p>
+        <Button text="Začnimo sodelovanje" />
+      </div>
       <Swiper
         class="hero-swiper w-full"
         :modules="[Autoplay, FreeMode]"

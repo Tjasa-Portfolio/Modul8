@@ -10,7 +10,7 @@ const toggleMenu = () => {
 </script>
 <template>
   <nav
-    class="flex flex-col content-center items-center shrink-0 px-5 py-2.5 bg-light-gray rounded-3xl w-full shadow-navigacija blur-navigacija"
+    class="flex flex-col content-center items-center shrink-0 px-5 py-2.5 bg-light-gray rounded-3xl w-full shadow-navigacija blur-navigacija max-w-[1683px]"
   >
     <div class="flex flex-row justify-between items-center w-full">
       <span class="flex flex-row justify-start items-center"
