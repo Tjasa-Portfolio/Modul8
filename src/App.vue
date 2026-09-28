@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import Navigation from './components/navigation/NavigationComponent.vue'
+import Hero from './components/hero/HeroComponent.vue'
+import MainContent from './components/main_content/MainContentComponent.vue'
+import Footer from './components/footer/FooterComponent.vue'
 </script>
 
 <template>
-  <section
-    class="flex flex-col justify-start items-center py-[30px] px-2.5 bg-black-main w-full h-screen font-display"
-  >
-    <Navigation />
-  </section>
+  <Hero />
+  <MainContent />
+  <Footer />
 </template>
-
-<style></style>
