@@ -4,7 +4,7 @@ import Accordion from './sub_components/AccordionComponent.vue'
 import ServicesCard from './sub_components/ServicesCardComponent.vue'
 </script>
 <template>
-  <div class="flex flex-col justify-center items-center px-5 py-25">
+  <div class="flex flex-col justify-center items-center px-5 py-25 max-w-316.5">
     <div class="text-center flex flex-col justify-center items-center gap-5">
       <h2 class="font-black text-black-main text-2xl">Celostne storitve na enem mestu</h2>
       <p class="font-normal text-black-main text-[16px]">
