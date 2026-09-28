@@ -7,6 +7,5 @@ import Footer from './components/footer/FooterComponent.vue'
 <template>
   <Hero />
   <RouterView />
-  <!--<MainContent />-->
   <Footer />
 </template>
