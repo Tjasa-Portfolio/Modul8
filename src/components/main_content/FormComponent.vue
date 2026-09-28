@@ -1,4 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <p>FORM COMPONENT</p>
+  <section id="kontakt">
+    <p>FORM COMPONENT</p>
+  </section>
 </template>

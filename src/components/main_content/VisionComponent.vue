@@ -27,7 +27,7 @@ const list_items = ref([
 ])
 </script>
 <template>
-  <div class="flex flex-col justify-center items-center px-5 py-25 max-w-316.5">
+  <div id="vizija" class="flex flex-col justify-center items-center px-5 py-25 max-w-316.5">
     <div class="text-left flex flex-col justify-start items-start gap-5 md:flex-row w-full">
       <div class="bg-black border rounded-2xl max-w-150 w-full h-112.5 md:w-[50%]"></div>
       <div class="md:w-[50%]">
