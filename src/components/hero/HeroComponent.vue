@@ -5,6 +5,26 @@ import 'swiper/css'
 
 import Navigation from '../navigation/NavigationComponent.vue'
 import Button from '../shared/ButtonComponent.vue'
+import { ref } from 'vue'
+import image34 from '../../assets/img/swiper/image 34.png'
+import swiper1 from '../../assets/img/swiper/swiper_1.png'
+import swiper2 from '../../assets/img/swiper/swiper_2.svg'
+import swiper3 from '../../assets/img/swiper/swiper_3.png'
+import swiper4 from '../../assets/img/swiper/swiper_4.png'
+import swiper5 from '../../assets/img/swiper/swiper_5.png'
+import swiper6 from '../../assets/img/swiper/swiper_6.svg'
+import swiper7 from '../../assets/img/swiper/swiper_7.svg'
+
+const list_items = ref([
+  { id: 1, text: image34 },
+  { id: 2, text: swiper1 },
+  { id: 3, text: swiper2 },
+  { id: 4, text: swiper3 },
+  { id: 5, text: swiper4 },
+  { id: 6, text: swiper5 },
+  { id: 7, text: swiper6 },
+  { id: 8, text: swiper7 },
+])
 </script>
 <template>
   <section
@@ -34,8 +54,8 @@ import Button from '../shared/ButtonComponent.vue'
         :loop="true"
         :allow-touch-move="false"
       >
-        <SwiperSlide v-for="slide in 15" :key="slide" class="w-auto!">
-          Slide {{ slide }}
+        <SwiperSlide v-for="slide in list_items" :key="slide.id" class="h-12.5 w-auto!">
+          <img :src="slide.text" alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
