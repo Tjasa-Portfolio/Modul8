@@ -6,6 +6,7 @@
   --font-display: 'Poppins', sans-serif;
   --color-light-gray: rgba(153, 153, 153, 0.5);
   --color-footer-border: rgba(255, 255, 255, 0.2);
+  --drop-shadow-form: 0 0 30px 0 rgba(164, 163, 163, 0.15);
   --font-logo: 'Inter', sans-serif;
 
   /*NAVIGATION*/
@@ -18,4 +19,7 @@
   --color-orange-main: #ff6933;
   --color-violet-main: #a82fff;
   --color-black-main: #000;
+  --color-light-gray: #d7d7d7;
+  --color-turq-references: #499197;
+  --color-form-btn: #707070;
 }
