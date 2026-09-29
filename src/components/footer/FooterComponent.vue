@@ -7,9 +7,8 @@
       <!-- LOGO -->
       <div class="w-full">
         <span class="flex flex-row justify-center items-center"
-          ><p>ikona</p>
-          <p class="font-logo font-normal text-[60px]">Modul8</p></span
-        >
+          ><img src="../../assets/img/modul8_logo.svg" alt="" class="h-11.25"
+        /></span>
       </div>
       <!-- TEXT -->
       <div class="py-12 font-display w-full flex flex-col justify-center items-center md:flex-row">
