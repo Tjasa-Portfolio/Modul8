@@ -2,9 +2,19 @@
 import Button from '../shared/ButtonComponent.vue'
 import Accordion from './sub_components/AccordionComponent.vue'
 import ServicesCard from './sub_components/ServicesCardComponent.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToReferences = () => {
+  router.push('/references')
+}
 </script>
 <template>
-  <div id="storitve" class="flex flex-col justify-center items-center px-5 py-25 max-w-316.5">
+  <div
+    id="storitve"
+    class="flex flex-col justify-center items-center px-5 max-w-316.5 pt-25 md:pt-50"
+  >
     <div class="text-center flex flex-col justify-center items-center gap-5">
       <h2 class="font-black text-black-main text-2xl">Celostne storitve na enem mestu</h2>
       <p class="font-normal text-black-main text-[16px]">
@@ -18,6 +28,6 @@ import ServicesCard from './sub_components/ServicesCardComponent.vue'
 
     <!-- FAQ -->
     <Accordion />
-    <Button text="Nekaj naših referenc" class="mt-15" />
+    <Button text="Nekaj naših referenc" class="mt-15" @click="goToReferences" />
   </div>
 </template>

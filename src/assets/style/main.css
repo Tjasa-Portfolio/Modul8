@@ -4,7 +4,8 @@
 
 @theme {
   --font-display: 'Poppins', sans-serif;
-  --color-light-gray: rgba(153, 153, 153, 0.5);
+  --color-light-gray-nav: rgba(153, 153, 153, 0.5);
+  --color-light-gray-nav-open: rgba(153, 153, 153, 1);
   --color-footer-border: rgba(255, 255, 255, 0.2);
   --drop-shadow-form: 0 0 30px 0 rgba(164, 163, 163, 0.15);
   --font-logo: 'Inter', sans-serif;

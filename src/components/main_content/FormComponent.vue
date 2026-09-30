@@ -7,17 +7,46 @@ const buttons = ref([
   { id: 3, text: 'Računovodske storitve' },
   { id: 4, text: 'Drugo' },
 ])
+
+const selectedService = ref('')
+const isSubmitting = ref(false)
+
+const handleSubmit = async (event: SubmitEvent) => {
+  const form = event.currentTarget as HTMLFormElement
+
+  isSubmitting.value = true
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    })
+
+    if (response.ok) {
+      form.reset()
+      selectedService.value = ''
+    }
+  } finally {
+    isSubmitting.value = false
+  }
+}
 </script>
 <template>
   <section
-    id="kontakt"
-    class="px-5 pt-7 pb-10 border-0 rounded-[40px] shadow-form flex flex-col justify-center items-center w-full"
+    id="form"
+    class="px-5 pb-10 border-0 rounded-[40px] shadow-form flex flex-col justify-center items-center w-full"
   >
     <h2>Stopimo v kontakt</h2>
     <div
       class="w-full pt-5 flex flex-col justify-center items-center md:flex-row md:items-start md:justify-start md:gap-10 xl:gap-20 max-w-316.5"
     >
-      <form class="w-full md:w-[50%]">
+      <form
+        action="https://formspree.io/f/xyezopvd"
+        method="POST"
+        class="w-full md:w-[50%]"
+        @submit.prevent="handleSubmit"
+      >
         <!-- FORM BTNS-->
         <div class="flex flex-col justify-start items-start w-full">
           <label for="form-buttons" class="text-[16px] font-semibold"
@@ -30,17 +59,26 @@ const buttons = ref([
             <button
               v-for="button in buttons"
               :key="button.id"
-              class="px-4.5 py-2.75 rounded-[10px] border-solid border border-form-btn hover:cursor-pointer"
+              type="button"
+              :aria-pressed="selectedService === button.text"
+              :class="[
+                'px-4.5 py-2.75 rounded-[10px] border-solid border border-form-btn hover:cursor-pointer',
+                selectedService === button.text &&
+                  'bg-orange-main text-white-main border-orange-main font-bold',
+              ]"
+              @click="selectedService = button.text"
             >
               {{ button.text }}
             </button>
           </div>
         </div>
+        <input type="hidden" name="service" :value="selectedService" />
         <!-- IME -->
         <div class="flex flex-col justify-start items-start w-full pt-5 gap-2.5">
           <label for="name" class="text-[16px] font-semibold">Vaše ime*</label>
           <input
             id="name"
+            name="name"
             type="text"
             placeholder="Janez Novak"
             required
@@ -52,7 +90,8 @@ const buttons = ref([
           <label for="email" class="text-[16px] font-semibold">Vaš e-mail naslov*</label>
           <input
             id="email"
-            type="mail"
+            name="email"
+            type="email"
             placeholder="janez.novak@gmail.com"
             required
             class="px-4.5 py-2.75 border-solid border border-form-btn rounded-[10px] w-full"
@@ -63,7 +102,7 @@ const buttons = ref([
           <label for="sporocilo" class="text-[16px] font-semibold">Vaše sporočilo*</label>
           <textarea
             id="sporocilo"
-            type="mail"
+            name="message"
             placeholder="Potrebovali bi... "
             required
             class="px-4.5 py-2.75 border-solid border border-form-btn rounded-[10px] w-full"
@@ -71,10 +110,13 @@ const buttons = ref([
         </div>
 
         <div class="pt-7.5 w-full flex flex-col justify-center items-center">
-          <submit
+          <button
+            type="submit"
+            :disabled="isSubmitting"
             class="hover:cursor-pointer w-full flex flex-row justify-center items-center font-bold text-lg py-2 px-5 text-white bg-black-main border border-black-main rounded-[10px]"
-            >Oddaj Povpraševanje</submit
           >
+            Oddaj Povpraševanje
+          </button>
         </div>
       </form>
       <div
