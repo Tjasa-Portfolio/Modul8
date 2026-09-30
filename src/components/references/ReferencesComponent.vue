@@ -6,6 +6,13 @@ import genILogo from '../../assets/img/references/gen-i.png'
 import myNextIdLogo from '../../assets/img/references/id.svg'
 import LoopyfullLogo from '../../assets/img/references/Loopyfull.svg'
 import quickontripLogo from '../../assets/img/references/quickontrip.svg'
+
+import weorcImg from '../../assets/img/references/Frame 21054.png'
+import seyforImg from '../../assets/img/references/seyfor_frame.png'
+import genIImg from '../../assets/img/references/geni_frame.png'
+import myNextIdImg from '../../assets/img/references/id_frame.png'
+import LoopyfullImg from '../../assets/img/references/loopyfull_frame.png'
+import quickontripImg from '../../assets/img/references/quickontrips_frame.png'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -17,7 +24,7 @@ const goToForm = () => {
 const list_items = ref([
   {
     id: 1,
-    img_src: '',
+    img_src: weorcImg,
     header_img: weorcLogo,
     paragraph:
       'WeOrc je inovativna aplikacija, ki poenostavlja ustvarjanje digitalnih življenjepisov, kamor lahko uporabniki dodajo svoje zaposlitve in veščine ter zbirajo mnenja strank. Ta platforma uporabnikom ne omogoča le, da imajo vse informacije na enem mestu, temveč tudi, da svoje delo uporabijo kot dokaz svoje strokovnosti in zanesljivosti. Mnenja strank so ključnega pomena, saj jim omogočajo komentiranje storitev, pri čemer morajo biti ti komentarji v skladu s strogimi smernicami proti sovražnemu govoru, da se zagotovi varno in profesionalno okolje. Vsak profil na platformi WeOrc deluje kot osebna blagovna znamka, ki uporabnikom pomaga izstopati na konkurenčnem trgu dela.',
@@ -30,7 +37,7 @@ const list_items = ref([
   },
   {
     id: 2,
-    img_src: '',
+    img_src: seyforImg,
     header_img: seyforLogo,
     paragraph:
       'Seyfor je podjetje za razvoj programske opreme, ki razvija orodja, s katerimi podjetjem pomaga učinkovito upravljati administrativne naloge in zakonske obveznosti. Za ta UX/UI oblikovalski izziv je bila naloga ustvariti uporabniški vmesnik, ki zaposlenim omogoča pregledovanje, kategorizacijo in dodeljevanje prejetih pošiljk ter dokumentov (tako digitalnih kot fizičnih) za nadaljnjo interno obdelavo.',
@@ -43,7 +50,7 @@ const list_items = ref([
   },
   {
     id: 3,
-    img_src: '',
+    img_src: genIImg,
     header_img: genILogo,
     paragraph:
       'Portal Moj GEN-I je osrednje mesto za stranke podjetja GEN-I za upravljanje njihovih storitev: preverjanje porabe, pregled računov, spremljanje ponudb, oddajo zahtevkov za podporo in upravljanje merilnih mest. Merilno mesto je določena lokacija, kjer se meri poraba električne energije ali zemeljskega plina. Stranke imajo lahko več merilnih mest — na primer: primarno bivališče, vikend, poslovni prostor, garažo, nepremičnino za oddajo in ostale storitve povezane z upravljanjem energije.',
@@ -55,7 +62,7 @@ const list_items = ref([
   },
   {
     id: 4,
-    img_src: '',
+    img_src: LoopyfullImg,
     header_img: LoopyfullLogo,
     paragraph:
       'Loopyfull je projekt, ki rešuje pomanjkanje sodobnih orodij v svetu kvačkanja. Ker so informacije trenutno razpršene po YouTubu in blogih, ta mobilna aplikacija na enem intuitivnem mestu združuje vadnice, generator vzorcev, informacije o preji in skupnost. Tako začetnikom kot izkušenim ustvarjalcem omogoča svobodo pri oblikovanju oblačil in dodatkov po meri, hkrati pa jih korak za korakom vodi do končnega izdelka. Projekt mi je omogočil raziskati potrebe te nišne skupnosti in zanje oblikovati preprosto in podporno uporabniško izkušnjo.',
@@ -68,7 +75,7 @@ const list_items = ref([
   },
   {
     id: 5,
-    img_src: '',
+    img_src: myNextIdImg,
     header_img: myNextIdLogo,
     paragraph:
       'MyNextID je decentralizirana platforma za digitalno identiteto, ki jo organizacije uporabljajo za izdajanje, upravljanje in preverjanje digitalnih dokumentov ter poverilnic. Medtem ko je bila javna spletna stran pred kratkim prenovljena, sta interni aplikaciji — MyNextID Issuer in MyNextID Fleet Management — ostali zastareli, vizualno neskladni in težki za uporabo. V sklopu UX/UI oblikovanja smo izdelali koncept prenove za njihovo aplikacijio imenovano “Issuer”. Namesto površinske posodobitve smo razširili obseg in preoblikovali celoteno spletno aplikacijo.',
@@ -80,7 +87,7 @@ const list_items = ref([
   },
   {
     id: 6,
-    img_src: '',
+    img_src: quickontripImg,
     header_img: quickontripLogo,
     paragraph:
       'Quickontrip je mobilna aplikacija za odkrivanje destinacij, zasnovana za pomoč uporabnikom pri raziskovanju Slovenije skozi skrbno izbrane izlete, znamenitosti, pokrajine, urbana doživetja, restavracije in prenočišča.Cilj projekta je bil ustvariti sodobno, intuitivno in navdihujočo popotniško aplikacijo, ki omogoča lahkotno raziskovanje Slovenije — ne glede na to, ali uporabniki iščejo ročno, brskajo po vnaprej pripravljenih kategorijah ali se zanašajo na geolokacijska priporočila v realnem času.',
@@ -102,7 +109,7 @@ const list_items = ref([
         :key="item.id"
         class="w-full flex flex-col justify-center items-center md:items-start text-left md:flex-row even:md:flex-row-reverse md:gap-10"
       >
-        <div class="bg-black border rounded-2xl max-w-150 w-full h-112.5 md:w-[50%]"></div>
+        <img class="max-w-160 w-full h-112.5 md:w-[60%]" :src="item.img_src" alt="" />
         <section
           class="w-full md:w-[50%] flex flex-col gap-6 mt-6 md:mt-0 justify-start items-start"
         >
