@@ -1,0 +1,14 @@
+name: 'Allow merge to pages'
+
+on:
+  pull_request:
+
+jobs:
+  check_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow merge to pages
+        if: github.base_ref == 'gh-pages' && (github.head_ref != 'main' || github.event.pull_request.head.repo.full_name != github.repository)
+        run: |
+          echo 'ERROR: you can only merge to gh-pages from main.'
+          exit 1
