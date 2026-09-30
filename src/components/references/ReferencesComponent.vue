@@ -5,6 +5,13 @@ import seyforLogo from '../../assets/img/references/seyfor.svg'
 import genILogo from '../../assets/img/references/gen-i.png'
 import myNextIdLogo from '../../assets/img/references/id.svg'
 import quickontripLogo from '../../assets/img/references/quickontrip.svg'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToForm = () => {
+  router.push({ path: '/', hash: '#form' })
+}
 
 const list_items = ref([
   {
@@ -194,7 +201,9 @@ const list_items = ref([
           </p>
         </div>
         <button
-          class="px-5 py-2 rounded-[10px] bg-black-main text-white-main font-bold text-lg w-62.5"
+          type="button"
+          @click="goToForm"
+          class="cursor-pointer px-5 py-2 rounded-[10px] bg-black-main text-white-main font-bold text-lg w-62.5"
         >
           Stopimo v kontakt
         </button>

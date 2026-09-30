@@ -20,7 +20,7 @@ const list_items = ref([
   </li>
   <li>
     <RouterLink
-      to="/#kontakt"
+      to="/#form"
       @click="emit('close')"
       class="cursor-pointer rounded-[10px] bg-orange-main px-5 py-2 text-center text-lg font-bold text-white-main hover:bg-violet-main mx-10 md:mx-0"
     >

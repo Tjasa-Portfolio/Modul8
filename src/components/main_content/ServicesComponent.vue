@@ -2,6 +2,13 @@
 import Button from '../shared/ButtonComponent.vue'
 import Accordion from './sub_components/AccordionComponent.vue'
 import ServicesCard from './sub_components/ServicesCardComponent.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToReferences = () => {
+  router.push('/references')
+}
 </script>
 <template>
   <div
@@ -21,6 +28,6 @@ import ServicesCard from './sub_components/ServicesCardComponent.vue'
 
     <!-- FAQ -->
     <Accordion />
-    <Button text="Nekaj naših referenc" class="mt-15" />
+    <Button text="Nekaj naših referenc" class="mt-15" @click="goToReferences" />
   </div>
 </template>

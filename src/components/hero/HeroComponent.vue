@@ -6,7 +6,7 @@ import 'swiper/css'
 import Navigation from '../navigation/NavigationComponent.vue'
 import Button from '../shared/ButtonComponent.vue'
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import image34 from '../../assets/img/swiper/image 34.png'
 import swiper1 from '../../assets/img/swiper/swiper_1.png'
 import swiper2 from '../../assets/img/swiper/swiper_2.svg'
@@ -28,6 +28,11 @@ const list_items = ref([
 ])
 
 const route = useRoute()
+const router = useRouter()
+
+const goToForm = () => {
+  router.push({ path: '/', hash: '#form' })
+}
 </script>
 <template>
   <section
@@ -51,7 +56,7 @@ const route = useRoute()
         <p v-if="route.path === '/references'" class="text-orange-main text-xl">
           Združujemo izkušnje in strokovno znanje v premišljene digitalne rešitve.
         </p>
-        <Button v-if="route.path !== '/references'" text="Začnimo sodelovanje" />
+        <Button v-if="route.path !== '/references'" text="Začnimo sodelovanje" @click="goToForm" />
       </div>
       <Swiper
         v-if="route.path !== '/references'"
