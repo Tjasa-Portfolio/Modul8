@@ -4,7 +4,7 @@ import weorcLogo from '../../assets/img/references/weorc.svg'
 import seyforLogo from '../../assets/img/references/seyfor.svg'
 import genILogo from '../../assets/img/references/gen-i.png'
 import myNextIdLogo from '../../assets/img/references/id.svg'
-import LoopyfullLogo from '../../assets/img/references/loopyfull.svg'
+import LoopyfullLogo from '../../assets/img/references/Loopyfull.svg'
 import quickontripLogo from '../../assets/img/references/quickontrip.svg'
 import { useRouter } from 'vue-router'
 
