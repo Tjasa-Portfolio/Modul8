@@ -5,6 +5,7 @@ import seyforLogo from '../../assets/img/references/seyfor.svg'
 import genILogo from '../../assets/img/references/gen-i.png'
 import myNextIdLogo from '../../assets/img/references/id.svg'
 import quickontripLogo from '../../assets/img/references/quickontrip.svg'
+import LoopyfullLogo from '../../assets/img/references/loopyfull.svg'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -55,7 +56,7 @@ const list_items = ref([
   {
     id: 4,
     img_src: '',
-    header_img: '',
+    header_img: LoopyfullLogo,
     paragraph:
       'Loopyfull je projekt, ki rešuje pomanjkanje sodobnih orodij v svetu kvačkanja. Ker so informacije trenutno razpršene po YouTubu in blogih, ta mobilna aplikacija na enem intuitivnem mestu združuje vadnice, generator vzorcev, informacije o preji in skupnost. Tako začetnikom kot izkušenim ustvarjalcem omogoča svobodo pri oblikovanju oblačil in dodatkov po meri, hkrati pa jih korak za korakom vodi do končnega izdelka. Projekt mi je omogočil raziskati potrebe te nišne skupnosti in zanje oblikovati preprosto in podporno uporabniško izkušnjo.',
     buttons: [
