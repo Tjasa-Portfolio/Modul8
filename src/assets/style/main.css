@@ -37,7 +37,7 @@
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.1);
-  z-index: -1;
+  z-index: 0;
 }
 
 .service-card::before {
@@ -52,4 +52,9 @@
 .image-overlay > * {
   position: relative;
   z-index: 1;
+}
+
+.hero-media {
+  overflow: hidden;
+  filter: drop-shadow(var(--drop-shadow-form));
 }
