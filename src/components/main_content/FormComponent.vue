@@ -35,7 +35,7 @@ const handleSubmit = async (event: SubmitEvent) => {
 <template>
   <section
     id="kontakt"
-    class="px-5 pt-7 pb-10 border-0 rounded-[40px] shadow-form flex flex-col justify-center items-center w-full"
+    class="px-5 pb-10 border-0 rounded-[40px] shadow-form flex flex-col justify-center items-center w-full"
   >
     <h2>Stopimo v kontakt</h2>
     <div

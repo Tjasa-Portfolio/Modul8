@@ -6,6 +6,7 @@ import 'swiper/css'
 import Navigation from '../navigation/NavigationComponent.vue'
 import Button from '../shared/ButtonComponent.vue'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import image34 from '../../assets/img/swiper/image 34.png'
 import swiper1 from '../../assets/img/swiper/swiper_1.png'
 import swiper2 from '../../assets/img/swiper/swiper_2.svg'
@@ -25,6 +26,8 @@ const list_items = ref([
   { id: 7, text: swiper6 },
   { id: 8, text: swiper7 },
 ])
+
+const route = useRoute()
 </script>
 <template>
   <section
@@ -35,15 +38,23 @@ const list_items = ref([
     <div class="w-full h-screen flex flex-col justify-end items-start gap-7.5 max-w-[1683px]">
       <div class="w-full flex flex-col justify-end items-start gap-7.5 max-w-182.75">
         <h1 class="font-black text-[45px] md:text-[50px] text-left">
-          Celostne digitalne rešitve na enem mestu
+          {{
+            route.path === '/references'
+              ? 'Naše reference'
+              : 'Celostne digitalne rešitve na enem mestu'
+          }}
         </h1>
-        <p class="font-normal text-lg text-left">
+        <p v-if="route.path !== '/references'" class="font-normal text-lg text-left">
           Premišljeno uporabniško izkušnjo in digitalni razvoj združujemo v celovite rešitve z
           dolgoročno vrednostjo.
         </p>
-        <Button text="Začnimo sodelovanje" />
+        <p v-if="route.path === '/references'" class="text-orange-main text-xl">
+          Združujemo izkušnje in strokovno znanje v premišljene digitalne rešitve.
+        </p>
+        <Button v-if="route.path !== '/references'" text="Začnimo sodelovanje" />
       </div>
       <Swiper
+        v-if="route.path !== '/references'"
         class="hero-swiper w-full"
         :modules="[Autoplay, FreeMode]"
         :free-mode="{ enabled: true, momentum: false }"
