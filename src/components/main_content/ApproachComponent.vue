@@ -2,7 +2,7 @@
 import ApproachCard from './sub_components/ApproachCardComponent.vue'
 </script>
 <template>
-  <div class="flex flex-col justify-center items-center px-5 py-25 max-w-316.5">
+  <div class="flex flex-col justify-center items-center px-5 max-w-316.5">
     <div class="text-center flex flex-col justify-center items-center gap-5">
       <h2 class="font-black text-black-main text-2xl">Naš pristop</h2>
       <p class="font-normal text-black-main text-[16px]">

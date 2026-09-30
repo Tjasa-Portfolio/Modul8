@@ -4,7 +4,8 @@
 
 @theme {
   --font-display: 'Poppins', sans-serif;
-  --color-light-gray: rgba(153, 153, 153, 0.5);
+  --color-light-gray-nav: rgba(153, 153, 153, 0.5);
+  --color-light-gray-nav-open: rgba(153, 153, 153, 1);
   --color-footer-border: rgba(255, 255, 255, 0.2);
   --drop-shadow-form: 0 0 30px 0 rgba(164, 163, 163, 0.15);
   --font-logo: 'Inter', sans-serif;
@@ -22,4 +23,38 @@
   --color-light-gray: #d7d7d7;
   --color-turq-references: #499197;
   --color-form-btn: #707070;
+}
+
+.image-overlay {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  filter: drop-shadow(var(--drop-shadow-form));
+}
+
+.image-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 0;
+}
+
+.service-card::before {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.image-overlay > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-media {
+  overflow: hidden;
+  filter: drop-shadow(var(--drop-shadow-form));
 }
