@@ -44,7 +44,7 @@ onBeforeUnmount(() => {
 <template>
   <section
     id="form"
-    class="px-5 pb-10 border-0 rounded-[40px] drop-shadow-[0px_0px_30px_0px_rgba(164, 163, 163, 0.15)] flex flex-col justify-center items-center w-full"
+    class="px-5 max-w-316.5 border-0 rounded-[40px] form-shadow flex flex-col justify-center items-center w-full pt-7 px-7 pb-10"
   >
     <div
       v-if="isThankYouVisible"
@@ -85,7 +85,7 @@ onBeforeUnmount(() => {
             >
             <div
               id="form-buttons"
-              class="flex flex-row flex-wrap justify-start items-start w-full gap-5 pt-2.5"
+              class="flex flex-row flex-wrap justify-start items-start w-full gap-10 md:gap-10 pt-2.5"
             >
               <button
                 v-for="button in buttons"
@@ -107,7 +107,9 @@ onBeforeUnmount(() => {
           <div class="flex flex-col w-full md:flex-row md:gap-7.5">
             <!-- IME -->
             <div class="flex flex-col justify-start items-start w-full pt-5 gap-2.5">
-              <label for="name" class="text-[16px] font-semibold">Vaše ime*</label>
+              <label for="name" class="text-[16px] font-semibold"
+                >Vaše ime <span class="text-violet-main">*</span></label
+              >
               <input
                 id="name"
                 name="name"
@@ -119,7 +121,9 @@ onBeforeUnmount(() => {
             </div>
             <!-- EMAIL -->
             <div class="flex flex-col justify-start items-start w-full pt-5 gap-2.5">
-              <label for="email" class="text-[16px] font-semibold">Vaš e-mail naslov*</label>
+              <label for="email" class="text-[16px] font-semibold"
+                >Vaš e-mail naslov <span class="text-violet-main">*</span></label
+              >
               <input
                 id="email"
                 name="email"
@@ -133,7 +137,9 @@ onBeforeUnmount(() => {
 
           <!-- SPOROČILO -->
           <div class="flex flex-col justify-start items-start w-full pt-5 gap-2.5">
-            <label for="sporocilo" class="text-[16px] font-semibold">Vaše sporočilo*</label>
+            <label for="sporocilo" class="text-[16px] font-semibold"
+              >Vaše sporočilo <span class="text-violet-main">*</span></label
+            >
             <textarea
               id="sporocilo"
               name="message"
@@ -149,7 +155,7 @@ onBeforeUnmount(() => {
             <button
               type="submit"
               :disabled="isSubmitting"
-              class="hover:cursor-pointer w-full flex flex-row justify-center items-center font-bold text-lg py-2 px-5 text-white bg-black-main border border-black-main rounded-[10px]"
+              class="hover:cursor-pointer button w-full flex flex-row justify-center items-center font-bold text-lg py-2 px-5 text-white bg-black-main border border-black-main rounded-[10px]"
             >
               Oddaj Povpraševanje
             </button>
@@ -162,7 +168,6 @@ onBeforeUnmount(() => {
             Imate vprašanje, idejo ali potrebujete dodatne informacije? Z veseljem se pogovorimo in
             poiščemo pravo rešitev za vaše potrebe, želje.
           </p>
-          <p class="pt-10 text-lg font-semibold">UX/UI in programerske rešitve</p>
           <div class="pt-3.5 flex flex-row justify-start items-center gap-2.5">
             <div>
               <svg
@@ -214,3 +219,76 @@ onBeforeUnmount(() => {
     </template>
   </section>
 </template>
+
+<style>
+.form-shadow {
+  box-shadow: 0 0 30px 0 rgba(164, 163, 163, 0.15);
+}
+.button:hover,
+.button:focus-visible {
+  animation: kf-52-1973-background-color 1.250123s linear forwards;
+}
+
+@keyframes kf-52-1973-background-color {
+  0% {
+    animation-timing-function: linear(
+      0,
+      0.0216,
+      0.0747,
+      0.1458,
+      0.2255,
+      0.3076,
+      0.3879,
+      0.4638,
+      0.5339,
+      0.5974,
+      0.6542,
+      0.7044,
+      0.7484,
+      0.7866,
+      0.8196,
+      0.8479,
+      0.8722,
+      0.8928,
+      0.9103,
+      0.9251,
+      0.9375,
+      0.948,
+      0.9568,
+      0.9642,
+      0.9703,
+      0.9754,
+      0.9797,
+      0.9832,
+      0.9862,
+      0.9886,
+      0.9906,
+      0.9923,
+      0.9936,
+      0.9948,
+      0.9957,
+      0.9965,
+      0.9971,
+      0.9976,
+      0.9981,
+      0.9984,
+      0.9987,
+      0.9989,
+      0.9991,
+      0.9993,
+      0.9994,
+      0.9995,
+      0.9996,
+      0.9997,
+      0.9997,
+      0.9998,
+      0.9998
+    );
+    background-color: var(--color-black-main);
+  }
+
+  100% {
+    background-color: var(--color-violet-main);
+  }
+}
+</style>

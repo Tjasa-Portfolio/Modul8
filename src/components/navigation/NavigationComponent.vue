@@ -12,7 +12,7 @@ const closeMenu = () => {
 </script>
 <template>
   <nav
-    class="flex flex-col content-center items-center shrink-0 px-5 py-2.5 bg-light-gray-nav rounded-3xl w-full shadow-navigacija blur-navigacija max-w-[1683px]"
+    class="mt-5 flex flex-col content-center items-center shrink-0 px-5 py-2.5 bg-light-gray-nav rounded-3xl w-full shadow-navigacija blur-navigacija max-w-[1683px]"
   >
     <div class="flex flex-row justify-between items-center w-full">
       <RouterLink to="/" @click="closeMenu"
