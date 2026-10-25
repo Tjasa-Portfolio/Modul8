@@ -1,15 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+</script>
 <template>
   <footer
-    class="image-overlay service-card w-full bg-[url(../../assets/img/footer_bg.jpg)] bg-cover bg-center text-white-main flex flex-col justify-center items-center"
+    :class="[
+      'image-overlay footer service-card w-full bg-[url(../../assets/img/footer_bg.jpg)] bg-cover bg-center text-white-main flex flex-col justify-center items-center',
+      route.path === '/references' ? 'mt-0' : 'mt-25 md:mt-35',
+    ]"
   >
     <div
-      class="flex flex-col justify-center items-center text-center py-20 px-12.5 w-full max-w-[700px]"
+      class="flex flex-col justify-center items-center text-center py-20 px-12.5 w-full max-w-175"
     >
       <!-- LOGO -->
       <div class="w-full">
         <span class="flex flex-row justify-center items-center"
-          ><img src="../../assets/img/modul8_logo.svg" alt="" class="h-11.25"
+          ><img src="../../assets/img/modul8_logo.svg" alt="" class="h-16.25"
         /></span>
       </div>
       <!-- TEXT -->
@@ -22,8 +29,8 @@
           >
         </address>
         <div class="w-full py-0.5 border-b border-orange-main my-7.5 md:hidden"></div>
-        <div class="h-30 px-0.5 bg-orange-main mx-7.5 hidden md:flex"></div>
-        <div class="w-full flex flex-col justify-center items-center gap-5 md:items-start">
+        <div class="h-30 px-0.5 bg-orange-main hidden md:flex"></div>
+        <div class="w-full flex flex-col justify-center items-center gap-5">
           <span class="flex flex-row justify-start items-center gap-2.5"
             ><div>
               <svg
@@ -77,3 +84,16 @@
     </div>
   </footer>
 </template>
+
+<style scoped>
+.footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--color-black-main) 76.85%),
+    url('../../assets/img/footer_bg.jpg');
+  backdrop-filter: blur(4.8px);
+  -webkit-backdrop-filter: blur(4.8px);
+}
+</style>
