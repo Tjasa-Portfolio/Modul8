@@ -44,7 +44,7 @@ onBeforeUnmount(() => {
 <template>
   <section
     id="form"
-    class="px-5 max-w-316.5 border-0 rounded-[40px] form-shadow flex flex-col justify-center items-center w-full pt-7 md:px-7 pb-10"
+    class="px-5 max-w-400.5 border-0 rounded-[40px] form-shadow flex flex-col justify-center items-center w-full pt-7 md:px-7 pb-10"
   >
     <div
       v-if="isThankYouVisible"
@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
     <template v-else>
       <h2 class="font-black text-black-main text-2xl">Stopimo v kontakt</h2>
       <div
-        class="w-full pt-5 flex flex-col justify-center items-center md:flex-row md:items-start md:justify-start md:gap-10 xl:gap-20 max-w-316.5"
+        class="w-full pt-5 flex flex-col justify-center items-center md:flex-row md:items-start md:justify-start md:gap-10 xl:gap-20 max-w-400.5"
       >
         <form
           action="https://formspree.io/f/xyezopvd"
