@@ -13,7 +13,7 @@ const goToReferences = () => {
 <template>
   <div
     id="storitve"
-    class="flex flex-col justify-center items-center px-5 max-w-316.5 pt-25 md:pt-50"
+    class="flex flex-col justify-center items-center px-5 max-w-316.5 pt-25 md:pt-35"
   >
     <div class="text-center flex flex-col justify-center items-center gap-5">
       <h2 class="font-black text-black-main text-2xl">Celostne storitve na enem mestu</h2>

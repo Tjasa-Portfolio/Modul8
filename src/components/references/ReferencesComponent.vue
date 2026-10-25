@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import weorcLogo from '../../assets/img/references/weorc.svg'
+import neticaLogo from '../../assets/img/references/netica-logo.svg'
 import seyforLogo from '../../assets/img/references/seyfor.svg'
 import genILogo from '../../assets/img/references/gen-i.png'
 import myNextIdLogo from '../../assets/img/references/id.svg'
 import LoopyfullLogo from '../../assets/img/references/Loopyfull.svg'
 import quickontripLogo from '../../assets/img/references/quickontrip.svg'
 
-import weorcImg from '../../assets/img/references/Frame 21054.png'
+import neticaImg from '../../assets/img/references/netica.png'
 import seyforImg from '../../assets/img/references/seyfor_frame.png'
 import genIImg from '../../assets/img/references/geni_frame.png'
 import myNextIdImg from '../../assets/img/references/id_frame.png'
@@ -24,15 +24,14 @@ const goToForm = () => {
 const list_items = ref([
   {
     id: 1,
-    img_src: weorcImg,
-    header_img: weorcLogo,
+    img_src: neticaImg,
+    header_img: neticaLogo,
     paragraph:
-      'WeOrc je inovativna aplikacija, ki poenostavlja ustvarjanje digitalnih življenjepisov, kamor lahko uporabniki dodajo svoje zaposlitve in veščine ter zbirajo mnenja strank. Ta platforma uporabnikom ne omogoča le, da imajo vse informacije na enem mestu, temveč tudi, da svoje delo uporabijo kot dokaz svoje strokovnosti in zanesljivosti. Mnenja strank so ključnega pomena, saj jim omogočajo komentiranje storitev, pri čemer morajo biti ti komentarji v skladu s strogimi smernicami proti sovražnemu govoru, da se zagotovi varno in profesionalno okolje. Vsak profil na platformi WeOrc deluje kot osebna blagovna znamka, ki uporabnikom pomaga izstopati na konkurenčnem trgu dela.',
+      'Netica d.o.o. podjetje razvija napredne podatkovne rešitve, med katerimi je tudi NetiLAB – platforma za upravljanje podatkovnih tokov, validacijo in analitiko. Izvedli smo celovito UX/UI revizijo aplikacij NetFlow in NetBox vključno z konkretnimi predlogi za izboljšanje preglednosti, uporabnosti in učinkovitosti njune uporabe, katere je naročnik lahko takoj implementiral. ',
     buttons: [
       { id: 'b1', text: 'UX raziskava' },
       { id: 'b2', text: 'UX/UI oblikovanje' },
       { id: 'b3', text: 'Spletna aplikacija' },
-      { id: 'b4', text: 'Test uporabnosti' },
     ],
   },
   {
@@ -102,25 +101,23 @@ const list_items = ref([
   <main class="w-full flex flex-col justify-center items-center">
     <div
       id="storitve"
-      class="flex flex-col justify-center items-center px-5 py-25 max-w-316.5 gap-25 md:gap-50"
+      class="flex flex-col justify-center items-center px-5 pt-25 pb-25 max-w-316.5 gap-25 md:pt-35 md:gap-50"
     >
       <div
         v-for="item in list_items"
         :key="item.id"
-        class="w-full flex flex-col justify-center items-center md:items-start text-left md:flex-row even:md:flex-row-reverse md:gap-10"
+        class="w-full flex flex-col h-auto justify-center items-center gap-6 text-left lg:h-101 lg:items-start lg:flex-row lg:even:flex-row-reverse lg:gap-10"
       >
-        <img class="max-w-160 w-full h-112.5 md:w-[60%]" :src="item.img_src" alt="" />
-        <section
-          class="w-full md:w-[50%] flex flex-col gap-6 mt-6 md:mt-0 justify-start items-start"
-        >
+        <img class="max-w-160 w-full object-contain lg:w-[60%]" :src="item.img_src" alt="" />
+        <section class="w-full lg:w-[50%] flex flex-col gap-6 justify-start items-start">
           <img v-if="item.header_img" :src="item.header_img" alt="Reference logo" class="h-14.25" />
           <p>{{ item.paragraph }}</p>
-          <span>Kaj smo naredili</span>
+          <span class="font-bold">Kaj smo naredili</span>
           <div class="w-full flex flex-row flex-wrap justify-start items-start gap-5">
             <button
               v-for="button in item.buttons"
               :key="button.id"
-              class="cursor-pointer inline px-3.75 py-2 justify-center items-center text-white-main text-center text-xs non-italic font-bold bg-orange-main rounded-[10px]"
+              class="cursor-pointer inline px-4.75 py-3 justify-center items-center text-white-main text-center text-[14px] non-italic font-bold bg-orange-main rounded-[10px]"
             >
               {{ button.text }}
             </button>
@@ -128,9 +125,12 @@ const list_items = ref([
         </section>
       </div>
     </div>
+    <div class="mb-25 md:mb-35 w-full flex flex-col justify-center items-center text-center">
+      <p class="font-black text-[22px]">In še mnogi drugi projekti...</p>
+    </div>
     <div class="w-full bg-orange-main flex flex-for justify-center items-center px-5">
       <div
-        class="flex w-full py-14 flex-col justify-center items-center text-left text-white-main gap-10 md:flex-row max-w-316.5"
+        class="flex w-full py-8 md:py-14 flex-col justify-center items-center text-center md:text-left text-white-main gap-10 md:flex-row max-w-316.5"
       >
         <div>
           <svg
@@ -199,11 +199,12 @@ const list_items = ref([
             </defs>
           </svg>
         </div>
+
         <div>
           <h3 class="text-[27px] font-bold">
             Ste za to, da skupaj ustvarimo nekaj, kar zares šteje?
           </h3>
-          <p class="text-lg">
+          <p class="text-lg pt-7 md:pt-0">
             Z veseljem se bomo pogovorili o vaši ideji, projektu ali izzivu in raziskali, kako vam
             lahko pomagamo pri uresničitvi. Oglasite se nam kadarkoli.
           </p>
@@ -211,7 +212,7 @@ const list_items = ref([
         <button
           type="button"
           @click="goToForm"
-          class="cursor-pointer px-5 py-2 rounded-[10px] bg-black-main text-white-main font-bold text-lg w-62.5"
+          class="cursor-pointer px-5 py-2 rounded-[10px] bg-black-main text-white-main font-bold text-md w-72.5 button"
         >
           Stopimo v kontakt
         </button>
@@ -221,7 +222,12 @@ const list_items = ref([
       <div
         class="flex w-full py-14 flex-col justify-center items-center text-left text-white-main gap-10 md:flex-row max-w-316.5"
       >
-        <div class="bg-black border rounded-2xl max-w-150 w-full h-112.5 md:w-[50%]"></div>
+        <img
+          class="max-w-160 w-full md:w-[60%]"
+          src="../../assets/img/references/sharepoint.png"
+          alt=""
+        />
+        <!--<div class="bg-black border rounded-2xl max-w-150 w-full h-112.5 md:w-[50%]"></div>-->
         <div class="w-full md:w-[50%]">
           <h3 class="text-[24px] font-bold">SharePoint On-Premise in Online UX/UI</h3>
           <p class="text-[16px] py-7.5">
@@ -253,7 +259,7 @@ const list_items = ref([
                 />
               </svg>
             </div>
-            <p>
+            <p class="font-bold">
               Imamo več letne izkušnje z SharePoint On-Premise in Online okolji ter njihovimi
               uporabniki iz različnih panog dela.
             </p>
@@ -263,3 +269,72 @@ const list_items = ref([
     </div>
   </main>
 </template>
+<style>
+.button:hover,
+.button:focus-visible {
+  animation: kf-52-1973-background-color 1.250123s linear forwards;
+}
+
+@keyframes kf-52-1973-background-color {
+  0% {
+    animation-timing-function: linear(
+      0,
+      0.0216,
+      0.0747,
+      0.1458,
+      0.2255,
+      0.3076,
+      0.3879,
+      0.4638,
+      0.5339,
+      0.5974,
+      0.6542,
+      0.7044,
+      0.7484,
+      0.7866,
+      0.8196,
+      0.8479,
+      0.8722,
+      0.8928,
+      0.9103,
+      0.9251,
+      0.9375,
+      0.948,
+      0.9568,
+      0.9642,
+      0.9703,
+      0.9754,
+      0.9797,
+      0.9832,
+      0.9862,
+      0.9886,
+      0.9906,
+      0.9923,
+      0.9936,
+      0.9948,
+      0.9957,
+      0.9965,
+      0.9971,
+      0.9976,
+      0.9981,
+      0.9984,
+      0.9987,
+      0.9989,
+      0.9991,
+      0.9993,
+      0.9994,
+      0.9995,
+      0.9996,
+      0.9997,
+      0.9997,
+      0.9998,
+      0.9998
+    );
+    background-color: var(--color-black-main);
+  }
+
+  100% {
+    background-color: var(--color-violet-main);
+  }
+}
+</style>

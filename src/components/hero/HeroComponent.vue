@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay, FreeMode } from 'swiper/modules'
+import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 
 import Navigation from '../navigation/NavigationComponent.vue'
 import Button from '../shared/ButtonComponent.vue'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import image34 from '../../assets/img/swiper/image 34.png'
 import swiper1 from '../../assets/img/swiper/swiper_1.png'
 import swiper2 from '../../assets/img/swiper/swiper_2.svg'
 import swiper3 from '../../assets/img/swiper/swiper_3.png'
@@ -19,7 +18,6 @@ import heroVideo from '../../assets/img/hero_viewo.mp4'
 import referencesHero from '../../assets/img/references_hero.png'
 
 const list_items = ref([
-  { id: 1, text: image34 },
   { id: 2, text: swiper1 },
   { id: 3, text: swiper2 },
   { id: 4, text: swiper3 },
@@ -37,12 +35,16 @@ const goToForm = () => {
 }
 </script>
 <template>
-  <section
-    class="relative flex flex-col justify-start items-center overflow-hidden py-7.5 px-2.5 bg-black-main w-full h-screen font-display text-white-main"
-  >
+  <div class="hero-wrapper relative">
+    <section
+      :class="[
+        'relative flex flex-col justify-start items-center overflow-hidden py-7.5 px-2.5 bg-black-main w-full h-screen font-display text-white-main',
+        route.path === '/references' ? 'max-h-[502px] md:max-h-129.75' : 'max-h-360',
+      ]"
+    >
     <div
       v-if="route.path === '/references'"
-      class="hero-media absolute right-0 top-0 z-0 h-full w-full bg-cover bg-center md:w-1/2"
+      class="hero-media references-hero-media absolute right-0 top-0 z-0 h-full w-full bg-cover bg-center md:w-1/2"
       :style="{ backgroundImage: `url(${referencesHero})` }"
       aria-hidden="true"
     ></div>
@@ -59,7 +61,9 @@ const goToForm = () => {
     <div
       :class="[
         'hero-overlay pointer-events-none absolute top-0 z-1 h-full bg-black/40',
-        route.path === '/references' ? 'right-0 w-full md:w-1/2' : 'inset-0',
+        route.path === '/references'
+          ? 'references-hero-overlay right-0 w-full md:w-1/2'
+          : 'inset-0',
       ]"
       aria-hidden="true"
     ></div>
@@ -72,7 +76,8 @@ const goToForm = () => {
         <div
           :class="[
             'w-full flex flex-col justify-end items-start gap-7.5 max-w-182.75',
-            route.path !== '/references' && 'pb-25',
+            route.path === '/references' && 'px-5',
+            route.path !== '/references' && 'md:pb-25',
           ]"
         >
           <h1 class="font-black text-[45px] md:text-[50px] text-left">
@@ -97,31 +102,73 @@ const goToForm = () => {
         </div>
       </div>
     </div>
+    </section>
     <div
       v-if="route.path !== '/references'"
-      class="absolute -bottom-5 -left-0 z-10 w-[calc(100%+20px)] bg-black-main py-5"
+      class="hero-slider absolute -bottom-5 -left-0 z-10 w-[calc(100%+20px)] bg-black-main py-5"
     >
       <Swiper
         class="hero-swiper w-full"
-        :modules="[Autoplay, FreeMode]"
-        :free-mode="{ enabled: true, momentum: false }"
+        :modules="[Autoplay]"
         :slides-per-view="'auto'"
-        :space-between="50"
-        :speed="5000"
-        :autoplay="{ delay: 1, disableOnInteraction: false }"
+        :breakpoints="{
+          0: { spaceBetween: 32 },
+          768: { spaceBetween: 64 },
+          1280: { spaceBetween: 96 },
+        }"
+        :speed="7000"
+        :autoplay="{ delay: 0, disableOnInteraction: false }"
         :loop="true"
+        :loop-additional-slides="list_items.length"
         :allow-touch-move="false"
       >
-        <SwiperSlide v-for="slide in list_items" :key="slide.id" class="h-12.5 w-auto!">
-          <img :src="slide.text" alt="" />
+        <SwiperSlide
+          v-for="(slide, index) in [...list_items, ...list_items]"
+          :key="`${slide.id}-${index}`"
+          class="hero-slide h-12.5 w-auto!"
+        >
+          <img class="hero-slide-image" :src="slide.text" alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>
 .hero-swiper :deep(.swiper-wrapper) {
   transition-timing-function: linear;
+}
+
+.hero-slider {
+  position: absolute;
+}
+
+@media (max-width: 767px) {
+  .hero-slider {
+    position: static;
+    width: 100%;
+  }
+}
+
+.references-hero-overlay {
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, var(--color-black-main) 100%);
+}
+
+.hero-slide {
+  flex-shrink: 0;
+}
+
+.hero-slide-image {
+  display: block;
+  height: 3.125rem;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-swiper :deep(.swiper-wrapper) {
+    transition-timing-function: ease;
+  }
 }
 </style>
