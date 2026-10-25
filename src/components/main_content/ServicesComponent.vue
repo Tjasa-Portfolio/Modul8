@@ -22,7 +22,9 @@ const goToReferences = () => {
         vrednostjo
       </p>
     </div>
-    <div class="flex flex-col justify-center items-center gap-15 mt-10 md:flex-row w-full">
+    <div
+      class="flex flex-col justify-center items-center gap-15 mt-10 md:flex-row w-full max-w-400.5"
+    >
       <ServicesCard />
     </div>
 

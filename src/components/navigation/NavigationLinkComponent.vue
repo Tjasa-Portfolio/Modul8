@@ -30,7 +30,7 @@ const list_items = ref([
     <RouterLink
       to="/#form"
       @click="emit('close')"
-      class="contact-link cursor-pointer rounded-[10px] bg-orange-main px-5 py-2 text-center text-lg font-bold text-white-main mx-10 md:mx-0 md:ml-10"
+      class="contact-link inline-flex cursor-pointer items-center rounded-[10px] bg-orange-main px-5 py-2 text-center text-lg font-bold text-white-main mx-10 md:mx-0 md:ml-10"
     >
       Kontakt
     </RouterLink>
@@ -130,7 +130,7 @@ const list_items = ref([
   width: 0;
   height: 3px;
   border-radius: 3px;
-  background: linear-gradient(to right, var(--color-orange-main), var(--color-violet-main));
+  background: linear-gradient(to right, var(--color-orange-main), var(--color-orange-main));
   transition: width 300ms ease;
 }
 

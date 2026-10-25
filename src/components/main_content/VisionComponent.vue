@@ -30,7 +30,7 @@ const list_items = ref([
   <div id="vizija" class="flex flex-col justify-center items-center px-5 max-w-400.5">
     <div class="text-left flex flex-col justify-start items-center gap-10 md:flex-row w-full">
       <div
-        class="image-overlay bg-[url(../../assets/img/vision_1.jpg)] bg-cover bg-center rounded-[33px] max-w-150 w-full h-112.5 md:w-[50%]"
+        class="image-overlay bg-[url(../../assets/img/vision_1.jpg)] bg-cover bg-center rounded-[33px] w-full h-112.5 md:w-[50%]"
       ></div>
       <div class="md:w-[50%]">
         <h2 class="font-black text-black-main text-2xl pt-10.5 md:pt-0">
@@ -63,7 +63,7 @@ const list_items = ref([
       class="text-left flex flex-col justify-start items-center gap-10 mt-25 md:flex-row-reverse w-full"
     >
       <div
-        class="image-overlay bg-[url(../../assets/img/vision_2.jpg)] bg-cover bg-center rounded-2xl max-w-150 w-full h-112.5 md:w-[50%]"
+        class="image-overlay bg-[url(../../assets/img/vision_2.jpg)] bg-cover bg-center rounded-[33px] w-full h-112.5 md:w-[50%]"
       ></div>
       <div class="md:w-[50%]">
         <h2 class="font-black text-black-main text-2xl pt-10.5">Zakaj izbrati prav nas?</h2>
