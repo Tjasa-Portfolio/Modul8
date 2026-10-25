@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 
 import Navigation from '../navigation/NavigationComponent.vue'
@@ -39,87 +38,83 @@ const goToForm = () => {
     <section
       :class="[
         'relative flex flex-col justify-start items-center overflow-hidden py-7.5 px-2.5 bg-black-main w-full h-screen font-display text-white-main',
-        route.path === '/references' ? 'max-h-[502px] md:max-h-129.75' : 'max-h-360',
+        route.path === '/references' ? 'max-h-125.5 md:max-h-129.75' : 'max-h-360',
       ]"
     >
-    <div
-      v-if="route.path === '/references'"
-      class="hero-media references-hero-media absolute right-0 top-0 z-0 h-full w-full bg-cover bg-center md:w-1/2"
-      :style="{ backgroundImage: `url(${referencesHero})` }"
-      aria-hidden="true"
-    ></div>
-    <div v-else class="hero-media absolute inset-0 z-0" aria-hidden="true">
-      <video
-        class="h-full w-full object-cover"
-        :src="heroVideo"
-        autoplay
-        muted
-        loop
-        playsinline
-      ></video>
-    </div>
-    <div
-      :class="[
-        'hero-overlay pointer-events-none absolute top-0 z-1 h-full bg-black/40',
-        route.path === '/references'
-          ? 'references-hero-overlay right-0 w-full md:w-1/2'
-          : 'inset-0',
-      ]"
-      aria-hidden="true"
-    ></div>
-    <div class="relative z-10 flex h-full w-full flex-col items-center">
-      <Navigation />
-      <!-- HERO-->
       <div
-        class="flex min-h-0 w-full flex-1 flex-col items-start justify-end gap-7.5 max-w-[1683px]"
-      >
+        v-if="route.path === '/references'"
+        class="hero-media references-hero-media absolute right-0 top-0 z-0 h-full w-full bg-cover bg-center md:w-1/2"
+        :style="{ backgroundImage: `url(${referencesHero})` }"
+        aria-hidden="true"
+      ></div>
+      <div v-else class="hero-media absolute inset-0 z-0" aria-hidden="true">
+        <video
+          class="h-full w-full object-cover"
+          :src="heroVideo"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+      </div>
+      <div
+        :class="[
+          'hero-overlay pointer-events-none absolute top-0 z-1 h-full bg-black/40',
+          route.path === '/references'
+            ? 'references-hero-overlay right-0 w-full md:w-1/2'
+            : 'inset-0',
+        ]"
+        aria-hidden="true"
+      ></div>
+      <div class="relative z-10 flex h-full w-full flex-col items-center">
+        <Navigation />
+        <!-- HERO-->
         <div
-          :class="[
-            'w-full flex flex-col justify-end items-start gap-7.5 max-w-182.75',
-            route.path === '/references' && 'px-5',
-            route.path !== '/references' && 'md:pb-25',
-          ]"
+          class="flex min-h-0 w-full flex-1 flex-col items-start justify-end gap-7.5 max-w-[1683px]"
         >
-          <h1 class="font-black text-[45px] md:text-[50px] text-left">
-            {{
-              route.path === '/references'
-                ? 'Naše reference'
-                : 'Celostne digitalne rešitve na enem mestu'
-            }}
-          </h1>
-          <p v-if="route.path !== '/references'" class="font-normal text-lg text-left">
-            Premišljeno uporabniško izkušnjo in digitalni razvoj združujemo v celovite rešitve z
-            dolgoročno vrednostjo.
-          </p>
-          <p v-if="route.path === '/references'" class="text-orange-main text-xl">
-            Združujemo izkušnje in strokovno znanje v premišljene digitalne rešitve.
-          </p>
-          <Button
-            v-if="route.path !== '/references'"
-            text="Začnimo sodelovanje"
-            @click="goToForm"
-          />
+          <div
+            :class="[
+              'w-full flex flex-col justify-end items-start gap-7.5 max-w-182.75',
+              route.path === '/references' && 'px-5',
+              route.path !== '/references' && 'md:pb-25',
+            ]"
+          >
+            <h1 class="font-black text-[45px] md:text-[50px] text-left">
+              {{
+                route.path === '/references'
+                  ? 'Naše reference'
+                  : 'Celostne digitalne rešitve na enem mestu'
+              }}
+            </h1>
+            <p v-if="route.path !== '/references'" class="font-normal text-lg text-left">
+              Premišljeno uporabniško izkušnjo in digitalni razvoj združujemo v celovite rešitve z
+              dolgoročno vrednostjo.
+            </p>
+            <p v-if="route.path === '/references'" class="text-orange-main text-xl">
+              Združujemo izkušnje in strokovno znanje v premišljene digitalne rešitve.
+            </p>
+            <Button
+              v-if="route.path !== '/references'"
+              text="Začnimo sodelovanje"
+              @click="goToForm"
+            />
+          </div>
         </div>
       </div>
-    </div>
     </section>
     <div
       v-if="route.path !== '/references'"
-      class="hero-slider absolute -bottom-5 -left-0 z-10 w-[calc(100%+20px)] bg-black-main py-5"
+      class="hero-slider absolute -bottom-5 left-0 z-10 w-full bg-black-main py-5"
     >
       <Swiper
         class="hero-swiper w-full"
-        :modules="[Autoplay]"
         :slides-per-view="'auto'"
         :breakpoints="{
           0: { spaceBetween: 32 },
           768: { spaceBetween: 64 },
           1280: { spaceBetween: 96 },
         }"
-        :speed="7000"
-        :autoplay="{ delay: 0, disableOnInteraction: false }"
-        :loop="true"
-        :loop-additional-slides="list_items.length"
+        :loop="false"
         :allow-touch-move="false"
       >
         <SwiperSlide
@@ -127,7 +122,7 @@ const goToForm = () => {
           :key="`${slide.id}-${index}`"
           class="hero-slide h-12.5 w-auto!"
         >
-          <img class="hero-slide-image" :src="slide.text" alt="" />
+          <img class="hero-slide-image h-7.5" :src="slide.text" alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
@@ -136,11 +131,20 @@ const goToForm = () => {
 
 <style scoped>
 .hero-swiper :deep(.swiper-wrapper) {
-  transition-timing-function: linear;
+  animation: hero-marquee 35s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+@keyframes hero-marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .hero-slider {
   position: absolute;
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {
@@ -160,7 +164,6 @@ const goToForm = () => {
 
 .hero-slide-image {
   display: block;
-  height: 3.125rem;
   width: auto;
   max-width: none;
   object-fit: contain;

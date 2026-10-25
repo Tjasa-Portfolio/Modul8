@@ -25,7 +25,7 @@ const list_items = ref([
     v-for="item in list_items"
     :key="item.id"
     :style="{ backgroundImage: `url(${item.background_src})` }"
-    class="image-overlay service-card flex w-full max-w-[381.021px] h-[457.887px] flex-shrink-0 flex-col items-start justify-end gap-[6.612px] rounded-[33px] border bg-cover bg-center p-[32.234px_29.754px] text-white-main backdrop-blur-[22.0678px] bg-[rgba(0,0,0,0.10)]"
+    class="image-overlay service-card flex w-full h-[457.887px] flex-col items-start justify-end gap-[6.612px] rounded-[33px] border bg-cover bg-center p-[32.234px_29.754px] text-white-main"
   >
     <h3 class="font-black text-xl">{{ item.text }}</h3>
     <p class="font-medium text-[16px] py-4">{{ item.paragraph }}</p>
