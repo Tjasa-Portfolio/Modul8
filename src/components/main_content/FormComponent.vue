@@ -75,7 +75,7 @@ onBeforeUnmount(() => {
         <form
           action="https://formspree.io/f/xyezopvd"
           method="POST"
-          class="w-full md:w-[50%]"
+          class="w-full md:w-[66%]"
           @submit.prevent="handleSubmit"
         >
           <!-- FORM BTNS-->
@@ -162,13 +162,13 @@ onBeforeUnmount(() => {
           </div>
         </form>
         <div
-          class="w-full flex flex-col justify-start items-start md:items-start md:justify-start md:w-[50%] pt-17.5 md:pt-0 text-left"
+          class="w-full flex flex-col justify-start items-start md:items-start md:justify-start md:w-[33%] pt-17.5 md:pt-0 text-left"
         >
           <p class="text-base">
             Imate vprašanje, idejo ali potrebujete dodatne informacije? Z veseljem se pogovorimo in
             poiščemo pravo rešitev za vaše potrebe, želje.
           </p>
-          <div class="pt-3.5 flex flex-row justify-start items-center gap-2.5">
+          <div class="pt-6.5 flex flex-row justify-start items-center gap-2.5">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +197,7 @@ onBeforeUnmount(() => {
             </div>
             <a href="tel:+38640302772" class="text-base">+386 (0)40 302 772</a>
           </div>
-          <span class="flex flex-row justify-start items-center gap-2.5 pt-10"
+          <span class="flex flex-row justify-start items-center gap-2.5 pt-6.5"
             ><div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
