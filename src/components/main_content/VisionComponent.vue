@@ -30,10 +30,10 @@ const list_items = ref([
   <div id="vizija" class="flex flex-col justify-center items-center px-5 max-w-316.5">
     <div class="text-left flex flex-col justify-start items-center gap-5 md:flex-row w-full">
       <div
-        class="image-overlay bg-[url(../../assets/img/vision_1.jpg)] bg-cover bg-center rounded-2xl max-w-150 w-full h-112.5 md:w-[50%]"
+        class="image-overlay bg-[url(../../assets/img/vision_1.jpg)] bg-cover bg-center rounded-[33px] max-w-150 w-full h-112.5 md:w-[50%]"
       ></div>
       <div class="md:w-[50%]">
-        <h2 class="font-black text-black-main text-2xl">Naša vizija in poslanstvo</h2>
+        <h2 class="font-black text-black-main text-2xl pt-10.5">Naša vizija in poslanstvo</h2>
         <article class="flex flex-col justify-center items-start text-left gap-5 pt-7.5">
           <p class="font-normal text-black-main text-[16px]">
             V Modul8 ne ustvarjamo zgolj vizualno privlačnih vmesnikov, temveč premišljeno
@@ -64,7 +64,7 @@ const list_items = ref([
         class="image-overlay bg-[url(../../assets/img/vision_2.jpg)] bg-cover bg-center rounded-2xl max-w-150 w-full h-112.5 md:w-[50%]"
       ></div>
       <div class="md:w-[50%]">
-        <h2 class="font-black text-black-main text-2xl">Zakaj izbrati prav nas?</h2>
+        <h2 class="font-black text-black-main text-2xl pt-10.5">Zakaj izbrati prav nas?</h2>
         <ul class="flex flex-col justify-center items-start text-left gap-5 pt-7.5">
           <li
             v-for="item in list_items"

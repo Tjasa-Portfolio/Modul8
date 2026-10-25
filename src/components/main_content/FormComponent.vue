@@ -44,7 +44,7 @@ onBeforeUnmount(() => {
 <template>
   <section
     id="form"
-    class="px-5 max-w-316.5 border-0 rounded-[40px] form-shadow flex flex-col justify-center items-center w-full pt-7 px-7 pb-10"
+    class="px-5 max-w-316.5 border-0 rounded-[40px] form-shadow flex flex-col justify-center items-center w-full pt-7 md:px-7 pb-10"
   >
     <div
       v-if="isThankYouVisible"
@@ -85,7 +85,7 @@ onBeforeUnmount(() => {
             >
             <div
               id="form-buttons"
-              class="flex flex-row flex-wrap justify-start items-start w-full gap-10 md:gap-10 pt-2.5"
+              class="flex flex-row flex-wrap justify-start items-start w-full gap-2 md:gap-10 pt-2.5"
             >
               <button
                 v-for="button in buttons"

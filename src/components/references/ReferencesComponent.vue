@@ -101,17 +101,15 @@ const list_items = ref([
   <main class="w-full flex flex-col justify-center items-center">
     <div
       id="storitve"
-      class="flex flex-col justify-center items-center px-5 py-25 max-w-316.5 gap-25 md:gap-50"
+      class="flex flex-col justify-center items-center px-5 pt-25 pb-25 max-w-316.5 gap-25 md:pt-35 md:gap-50"
     >
       <div
         v-for="item in list_items"
         :key="item.id"
-        class="w-full flex flex-col h-101 justify-center items-center md:items-start text-left md:flex-row even:md:flex-row-reverse md:gap-10"
+        class="w-full flex flex-col h-auto justify-center items-center gap-6 text-left lg:h-101 lg:items-start lg:flex-row lg:even:flex-row-reverse lg:gap-10"
       >
-        <img class="max-w-160 w-full md:w-[60%]" :src="item.img_src" alt="" />
-        <section
-          class="w-full md:w-[50%] flex flex-col gap-6 mt-6 md:mt-0 justify-start items-start"
-        >
+        <img class="max-w-160 w-full object-contain lg:w-[60%]" :src="item.img_src" alt="" />
+        <section class="w-full lg:w-[50%] flex flex-col gap-6 justify-start items-start">
           <img v-if="item.header_img" :src="item.header_img" alt="Reference logo" class="h-14.25" />
           <p>{{ item.paragraph }}</p>
           <span class="font-bold">Kaj smo naredili</span>
@@ -119,7 +117,7 @@ const list_items = ref([
             <button
               v-for="button in item.buttons"
               :key="button.id"
-              class="cursor-pointer inline px-3.75 py-2 justify-center items-center text-white-main text-center text-xs non-italic font-bold bg-orange-main rounded-[10px]"
+              class="cursor-pointer inline px-4.75 py-3 justify-center items-center text-white-main text-center text-[14px] non-italic font-bold bg-orange-main rounded-[10px]"
             >
               {{ button.text }}
             </button>
@@ -132,7 +130,7 @@ const list_items = ref([
     </div>
     <div class="w-full bg-orange-main flex flex-for justify-center items-center px-5">
       <div
-        class="flex w-full py-14 flex-col justify-center items-center text-left text-white-main gap-10 md:flex-row max-w-316.5"
+        class="flex w-full py-8 md:py-14 flex-col justify-center items-center text-center md:text-left text-white-main gap-10 md:flex-row max-w-316.5"
       >
         <div>
           <svg
@@ -206,7 +204,7 @@ const list_items = ref([
           <h3 class="text-[27px] font-bold">
             Ste za to, da skupaj ustvarimo nekaj, kar zares šteje?
           </h3>
-          <p class="text-lg">
+          <p class="text-lg pt-7 md:pt-0">
             Z veseljem se bomo pogovorili o vaši ideji, projektu ali izzivu in raziskali, kako vam
             lahko pomagamo pri uresničitvi. Oglasite se nam kadarkoli.
           </p>

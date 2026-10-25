@@ -35,12 +35,13 @@ const goToForm = () => {
 }
 </script>
 <template>
-  <section
-    :class="[
-      'relative flex flex-col justify-start items-center overflow-hidden py-7.5 px-2.5 bg-black-main w-full h-screen font-display text-white-main',
-      route.path === '/references' ? 'max-h-129.75' : 'max-h-360',
-    ]"
-  >
+  <div class="hero-wrapper relative">
+    <section
+      :class="[
+        'relative flex flex-col justify-start items-center overflow-hidden py-7.5 px-2.5 bg-black-main w-full h-screen font-display text-white-main',
+        route.path === '/references' ? 'max-h-[502px] md:max-h-129.75' : 'max-h-360',
+      ]"
+    >
     <div
       v-if="route.path === '/references'"
       class="hero-media references-hero-media absolute right-0 top-0 z-0 h-full w-full bg-cover bg-center md:w-1/2"
@@ -75,7 +76,8 @@ const goToForm = () => {
         <div
           :class="[
             'w-full flex flex-col justify-end items-start gap-7.5 max-w-182.75',
-            route.path !== '/references' && 'pb-25',
+            route.path === '/references' && 'px-5',
+            route.path !== '/references' && 'md:pb-25',
           ]"
         >
           <h1 class="font-black text-[45px] md:text-[50px] text-left">
@@ -100,9 +102,10 @@ const goToForm = () => {
         </div>
       </div>
     </div>
+    </section>
     <div
       v-if="route.path !== '/references'"
-      class="absolute -bottom-5 -left-0 z-10 w-[calc(100%+20px)] bg-black-main py-5"
+      class="hero-slider absolute -bottom-5 -left-0 z-10 w-[calc(100%+20px)] bg-black-main py-5"
     >
       <Swiper
         class="hero-swiper w-full"
@@ -128,12 +131,23 @@ const goToForm = () => {
         </SwiperSlide>
       </Swiper>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>
 .hero-swiper :deep(.swiper-wrapper) {
   transition-timing-function: linear;
+}
+
+.hero-slider {
+  position: absolute;
+}
+
+@media (max-width: 767px) {
+  .hero-slider {
+    position: static;
+    width: 100%;
+  }
 }
 
 .references-hero-overlay {

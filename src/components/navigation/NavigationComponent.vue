@@ -1,14 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, ref, watch } from 'vue'
 import NavigationLink from './NavigationLinkComponent.vue'
 
 const isOpen = ref(false)
+let previousBodyOverflow = ''
+
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
 const closeMenu = () => {
   isOpen.value = false
 }
+
+watch(isOpen, (menuIsOpen) => {
+  if (menuIsOpen) {
+    previousBodyOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = previousBodyOverflow
+  }
+})
+
+onBeforeUnmount(() => {
+  document.body.style.overflow = previousBodyOverflow
+})
 </script>
 <template>
   <nav

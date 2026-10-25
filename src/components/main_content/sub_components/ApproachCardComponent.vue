@@ -39,9 +39,9 @@ const list_items = ref([
   <div
     v-for="item in list_items"
     :key="item.id"
-    class="flex flex-col justify-start items-start p-7 w-full max-w-82.5 card-shadow rounded-[40px] h-97"
+    class="flex flex-col justify-start items-start p-7 w-full max-w-92.5 card-shadow rounded-[40px] h-97"
   >
-    <div class="w-full flex flex-row justify-start items-start gap-5">
+    <div class="w-full flex flex-row justify-start items-start gap-5 w-82.5">
       <img :src="item.icon_src" alt="" />
       <h3 class="font-black text-[22px]">{{ item.text }}</h3>
     </div>
