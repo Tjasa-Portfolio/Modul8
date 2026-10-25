@@ -101,7 +101,7 @@ const list_items = ref([
   <main class="w-full flex flex-col justify-center items-center">
     <div
       id="storitve"
-      class="flex flex-col justify-center items-center px-5 pt-25 pb-25 max-w-316.5 gap-25 md:pt-35 md:gap-50"
+      class="flex flex-col justify-center items-center px-5 pt-25 pb-25 max-w-400.5 gap-25 md:pt-35 md:gap-50"
     >
       <div
         v-for="item in list_items"
@@ -130,7 +130,7 @@ const list_items = ref([
     </div>
     <div class="w-full bg-orange-main flex flex-for justify-center items-center px-5">
       <div
-        class="flex w-full py-8 md:py-14 flex-col justify-center items-center text-center md:text-left text-white-main gap-10 md:flex-row max-w-316.5"
+        class="flex w-full py-8 md:py-14 flex-col justify-center items-center text-center md:text-left text-white-main gap-10 md:flex-row max-w-400.5"
       >
         <div>
           <svg
@@ -220,7 +220,7 @@ const list_items = ref([
     </div>
     <div class="w-full bg-turq-references flex flex-for justify-center items-center px-5">
       <div
-        class="flex w-full py-14 flex-col justify-center items-center text-left text-white-main gap-10 md:flex-row max-w-316.5"
+        class="flex w-full py-14 flex-col justify-center items-center text-left text-white-main gap-10 md:flex-row max-w-400.5"
       >
         <img
           class="max-w-160 w-full md:w-[60%]"
