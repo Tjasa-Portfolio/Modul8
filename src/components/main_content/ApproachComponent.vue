@@ -10,7 +10,7 @@ import ApproachCard from './sub_components/ApproachCardComponent.vue'
       </p>
     </div>
     <div
-      class="flex flex-col w-full items-center justify-center md:grid md:grid-cols-2 lg:grid-cols-4"
+      class="flex flex-col w-full mt-10 items-center justify-center md:grid md:grid-cols-2 lg:grid-cols-4 gap-8"
     >
       <ApproachCard />
     </div>
