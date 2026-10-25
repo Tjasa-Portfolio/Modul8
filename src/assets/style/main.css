@@ -41,12 +41,12 @@
 }
 
 .service-card::before {
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.35) 45%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  inset: auto 0 0;
+  height: 65%;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(22.06783676147461px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 45%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 45%, black 100%);
 }
 
 .image-overlay > * {
